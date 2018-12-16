@@ -1,0 +1,829 @@
+.profile{
+    /*height: 850px;       光profile只要550,为了动画效果这里必须足够长，至少800px */
+    padding-top: 60px;  /*避免导航栏出错*/
+    padding-bottom: 30px;
+}
+
+/* 收起展开Profile */
+.profileLabel{
+    position: relative;
+    left: 50%;
+    padding-left: 10px;
+    margin: 0 0 20px -450px;
+
+    width: 200px;
+    color:#34495e;
+    font-size: 20px;
+    font-weight: bold;
+    font-family: SentyBrush;
+    letter-spacing: 1px;
+}
+
+#showProfile:hover{
+    cursor: pointer;
+    -webkit-animation-name: rubberBand;
+    -webkit-animation-duration: 0.6s;
+    animation-name: rubberBand;
+    animation-duration: 0.6s;
+}
+
+/* 收起展开Statistics */
+.statisticsLabel{
+    position: relative;
+    left: 50%;
+    padding-left: 10px;
+    margin: 20px 0 20px -450px;
+
+    width: 200px;
+    color:#34495e;
+    font-size: 20px;
+    font-weight: bold;
+    font-family: SentyBrush;
+    letter-spacing: 1px;
+}
+
+#showStatistics:hover{
+    cursor: pointer;
+    -webkit-animation-name: rubberBand;
+    -webkit-animation-duration: 0.6s;
+    animation-name: rubberBand;
+    animation-duration: 0.6s;
+}
+
+.card{
+    position:relative;
+    margin-top:30px;
+}
+
+/* 标题 */
+#watermarkForProfile .marker,#watermarkForStatistics .marker{
+    position: absolute;
+    font-size: 60px;
+    opacity: 0.2;
+    font-family: "SentyBrush";
+    font-weight: normal;
+    text-transform: uppercase;
+    left: 0;
+    top: -5px;
+}
+
+#watermarkForProfile,#watermarkForStatistics{
+    position: relative;
+}
+
+#watermarkForStatistics{
+    color:black;
+}
+
+.page-title{
+    position: relative;
+    display: inline-block;
+    font-family: "SentyBrush";
+    font-weight: normal;
+    font-size: 36px;
+    padding: 5px 0 5px 0;
+}
+
+.page-title:after,.page-title:before{
+    content: '';
+    position: absolute;
+    height: 1px;
+    background-color: white;
+    left: 0;
+    margin: 2px;
+}
+
+.page-title-black:after,.page-title-black:before{
+    background-color: black;
+}
+
+.page-title:after{
+    width: 75%;
+    top: -9px;
+
+}
+
+.page-title:before{
+    width: 40%;
+    bottom: -7px;
+}
+
+/* Profile部分的容器 */
+.profile-container {
+    display: block;
+    padding: 5px;
+    border-radius: 5px;
+    width: 800px;
+    height: 420px;
+
+    position: relative;
+    /*top:115%;          910px*/
+    left: 50%;
+    margin: 0 0 0 -400px;
+
+    background-color:rgba(0,0,0,0.2);   /*0.2-0.3之间*/
+    /*z-index:1;  这里不能设置z-index!!!!!*/
+
+    color:#E8E8E8;   /*内部字体颜色*/
+}
+
+/* 背景 */
+.profile-container:after {
+    content:"";
+    padding: 5px;
+    border-radius: 5px;
+    width: 800px;
+    height: 420px;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    background-image: url("../img/intro/deerforest.jpg");
+    background-size:100%;
+    z-index: -1;
+}
+
+.profile-form{
+    width: 100%;
+    margin: 0 auto;
+    padding: 50px 20px 10px 100px;
+    position: relative;
+    font-size: 15px;
+}
+
+.profile-form div label{
+    width: 150px;
+    margin-bottom: 20px;
+}
+
+.profile-form div span{
+    width:130px;
+    display:inline-block;
+    margin-left: 30px;
+    margin-right: 30px;
+    margin-bottom: 20px;
+}
+
+.profile-form div input{
+    width: 240px;
+    height: 26px;
+    line-height: 26px;
+    padding: 0px 5px 0px 5px;
+    border: none;
+    font-size: 16px;
+    color: #222;
+    background-color: rgba(255,255,255,0.5);
+    border-radius: 3px;
+
+    margin-left: 30px;
+}
+
+.profile-form div input:focus{
+    border:0.5px solid  #04f;           /*选中时的边框样式*/
+}
+
+/*修改/添加FaceID按钮*/
+#reviseFaceID{
+    display: inline-block;          /*为了能swing*/
+    margin-left: 120px;
+    cursor:pointer;
+}
+
+#facePic{
+    display: inline-block;
+    width: 20px;
+    height:19px;
+    margin-top:-2px;
+    margin-right: 2px;
+}
+
+#reviseFaceID:hover{  /*动画*/
+    color:white;
+
+    -webkit-animation-name: swing;
+    -webkit-animation-duration: 0.6s;
+    animation-name: swing;
+    animation-duration: 0.6s;
+}
+
+/*修改密码按钮*/
+.revisePassword{
+    margin-left: 20px;
+    cursor:pointer;
+}
+
+.revisePassword:hover{  /*动画*/
+    color:white;
+
+    -webkit-animation-name: swing;
+    -webkit-animation-duration: 0.6s;
+    animation-name: swing;
+    animation-duration: 0.6s;
+}
+
+/*编辑按钮*/
+.reviseButton{
+    margin-left: 20px;
+    cursor:pointer;
+}
+
+.reviseButton:hover{  /*编辑的动画*/
+    color:white;
+
+    -webkit-animation-name: swing;
+    -webkit-animation-duration: 0.6s;
+    animation-name: swing;
+    animation-duration: 0.6s;
+}
+
+/*取消按钮*/
+#cancel,#cancelForPassword{
+    margin-left: 330px;
+    cursor:pointer;
+    color:orangered;
+    font-size:24px;
+}
+
+#cancel:hover,#cancelForPassword:hover{  /*动画*/
+    color:red;
+
+    -webkit-animation-name: rubberBand;
+    -webkit-animation-duration: 0.6s;
+    animation-name: rubberBand;
+    animation-duration: 0.6s;
+}
+
+/*提交按钮*/
+#submit,#submitPassword{
+    background-color: rgba(0,0,0,0);
+    border:2px solid papayawhip;
+    color:white;
+    width: 90px;
+    display: block;
+    height: 46px;
+
+    float:right;
+    margin-right: 55px;
+    margin-top:30px;
+
+    border-radius: 15px;
+    font-size: 16px;
+    text-align: center;
+    letter-spacing: 5px;
+    cursor:pointer;
+
+    outline:none;
+
+    -webkit-animation-name: rubberBand;
+    -webkit-animation-duration: 0.6s;
+    animation-name: rubberBand;
+    animation-duration: 0.6s;
+}
+
+#submit:hover,#submitPassword:hover{
+    box-shadow:0 0 4px rgba(255,255,255,0.8);   /*荧光*/
+    border-color: white;
+}
+
+.revise-error-tips {	/*修改验证信息提示*/
+    font-size: 14px;
+    color: white;
+    line-height: 20px
+}
+
+/*错误icon*/
+.icon-login {
+    background: url(../img/login/login-svg-sprite-97eb796f.svg) no-repeat;
+}
+
+.icon-login-error {
+    background-position: 12.903225806451612% 99.23664122137404%
+}
+
+.icon-login-error {
+    width: 19px;
+    height: 19px
+}
+[class^=icon] {
+     display: inline-block;
+     vertical-align: middle;
+     position: relative;
+     top: -1px;
+     margin-right: 5px
+ }
+
+
+/* Statistics */
+#statistics{
+    position: relative;
+    left: 50%;
+    margin: 0 0 20px -400px;
+}
+
+/* Score */
+.scorePart, .taskInfoPart{
+    position: relative;
+    width:200px;
+    height:200px;
+    padding-top:35px;
+
+    border-radius: 15px;    /* 屏蔽四个角 */
+    /* 四角样式 */
+    background: linear-gradient(to left, #34495e, #34495e) left top no-repeat,
+    linear-gradient(to bottom, #34495e, #34495e) left top no-repeat,
+    linear-gradient(to left, #34495e, #34495e) right top no-repeat,
+    linear-gradient(to bottom, #34495e, #34495e) right top no-repeat,
+    linear-gradient(to left, #34495e, #34495e) left bottom no-repeat,
+    linear-gradient(to bottom, #34495e, #34495e) left bottom no-repeat,
+    linear-gradient(to left, #34495e, #34495e) right bottom no-repeat,
+    linear-gradient(to left, #34495e, #34495e) right bottom no-repeat;
+    background-size: 2px 30px, 30px 2px, 2px 30px, 30px 2px;
+
+    font-family: SentyBrush;
+
+    transition-duration: .1s;
+    -moz-transition-duration: .1; /* Firefox 4 */
+    -webkit-transition-duration: .1s; /* Safari 和 Chrome */
+    -o-transition-duration: .1s; /* Opera */
+}
+
+.taskInfoPart:hover{        /*.scorePart:hover, */
+    transform: scale(0.9);
+    -ms-transform:scale(0.9);	/* IE 9 */
+    -moz-transform:scale(0.9); 	/* Firefox */
+    -webkit-transform:scale(0.9);/* Safari 和 Chrome */
+    -o-transform:scale(0.9); 	/* Opera */
+}
+
+#scoreDetail{
+    position:absolute;
+    right:15px;
+    top:15px;
+
+    font-size:17px;
+    cursor: pointer;
+}
+
+#scoreDetail:hover{
+    -webkit-animation-name: swing;
+    -webkit-animation-duration: 0.6s;
+    animation-name: swing;
+    animation-duration: 0.6s;
+}
+
+#scoreListWrapper{
+    position: absolute;
+    width: 400px;
+    height: 300px;
+    border: 1px solid #34495e;
+    top: -58px;
+    left: 215px;
+
+    border-radius:10px;
+    background-color: #34495e;
+    padding-top:5px;
+
+    z-index:2;  /* 保证覆盖在在rankPart上面 */
+
+    -webkit-animation-name: fadeInRight;    /*flipInX*/
+    -webkit-animation-duration: 0.8s;
+    animation-name: fadeInRight;
+    animation-duration: 0.8s;
+
+    /*-webkit-transition:width linear 1s;
+    transition:width linear 1s; 展开*/
+}
+
+#scoreListWrapper:before{      /*气泡的小三角*/
+    position: absolute;
+    content: "";
+    width: 0;
+    height: 0;
+    right: 100%;
+    top: 70px;
+    border-top: 10px solid transparent;
+    border-right: 15px solid #34495e;
+    border-bottom: 10px solid transparent;
+}
+
+#scoreList{
+    width: inherit;
+    height: inherit;
+
+    overflow-x:hidden;
+    overflow-y:auto;
+}
+
+#scoreList::-webkit-scrollbar {/*滚动条整体样式*/
+    width: 14px;
+    height: 14px;
+    z-index:2;  /* 防止被光线遮挡而滚动不了 */
+}
+
+#scoreList::-webkit-scrollbar-thumb {/*滚动条里面小方块*/
+    border-radius: 999px;
+    border: 5px solid transparent;
+
+    height:30px;
+    background-clip: content-box;
+    box-shadow: 0 0 0 5px rgba(255,255,255,0.7) inset;
+    z-index:2;  /* 防止被光线遮挡而滚动不了 */
+}
+
+#scoreList::-webkit-scrollbar-track {/*滚动条里面轨道*/
+    border-radius: 999px;
+    border: 5px solid transparent;
+    box-shadow: 1px 1px 5px rgba(0,0,0,.2) inset;
+}
+
+#scoreList::-webkit-scrollbar-corner {
+    background: transparent;
+}
+
+.noScoreItem{
+    margin-top:110px;
+    width: inherit;
+    text-align: center;
+    color:white;
+    font-family: SentyBrush,SentyTea;
+    font-size:18px;
+}
+
+.scoreItem{
+    width: inherit;     /* 保证父节点变形后子节点长度跟着变 */
+    padding-left: 35px;
+    padding-top:5px;
+
+    color:white;
+    font-family: SentyBrush,SentyTea;
+    font-size:18px;
+}
+
+.scoreDate{
+    width:47px;
+    min-height: 27px;
+    margin-right: 30px;
+    border-radius: 15px;
+
+    vertical-align: top;    /*上对齐*/
+    text-align: center;
+    font-size:15px;
+}
+
+.scoreName{
+    width:200px;
+    vertical-align: top;    /*上对齐*/
+    font-family: SentyTea;
+}
+
+.scoreNum{
+    width: auto;
+    margin-left: 20px;
+    vertical-align: top;    /*上对齐*/
+
+    font-size:15px;
+    letter-spacing: 1px;
+}
+
+
+
+.score, .taskInfo{
+    width:180px;
+    margin:0 auto;
+
+    text-align: center;
+    font-size:60px;
+    font-family: "Josefin Sans";
+}
+
+.scoreLabel, .taskInfoLabel, .rankLabel{
+    position:absolute;
+    bottom:0;
+    width: inherit;     /* 保证父节点变形后子节点长度跟着变 */
+    text-align: center;
+
+    background-color: #34495e;
+    border-bottom-left-radius: 12px;
+    border-bottom-right-radius: 12px;
+
+    color:white;
+    font-size: 30px;
+}
+
+/* TaskInfo */
+#taskInfoPart{
+    margin-top: 30px;   /* 和score的间距 */
+}
+
+.taskInfoFormat, #rankInfoFormat{
+    font-size:15px;
+}
+
+/* Rank */
+.rankPart{
+    position: absolute;
+    left:300px;
+    top:0px;
+    width:500px;
+    height:430px;
+    padding-top:35px;
+
+    border-radius: 15px;    /* 屏蔽四个角 */
+    /* 四角样式 */
+    background: linear-gradient(to left, #34495e, #34495e) left top no-repeat,
+    linear-gradient(to bottom, #34495e, #34495e) left top no-repeat,
+    linear-gradient(to left, #34495e, #34495e) right top no-repeat,
+    linear-gradient(to bottom, #34495e, #34495e) right top no-repeat,
+    linear-gradient(to left, #34495e, #34495e) left bottom no-repeat,
+    linear-gradient(to bottom, #34495e, #34495e) left bottom no-repeat,
+    linear-gradient(to left, #34495e, #34495e) right bottom no-repeat,
+    linear-gradient(to left, #34495e, #34495e) right bottom no-repeat;
+    background-size: 2px 30px, 30px 2px, 2px 30px, 30px 2px;
+
+    font-family: SentyBrush;
+
+    transition-duration: .1s;
+    -moz-transition-duration: .1; /* Firefox 4 */
+    -webkit-transition-duration: .1s; /* Safari 和 Chrome */
+    -o-transition-duration: .1s; /* Opera */
+}
+
+.rank{
+    width:200px;
+    margin:0 auto;
+
+    text-align: center;
+    font-family: "Josefin Sans";
+    font-size: 70px;
+}
+
+#goToRankList, #backToMyRank{
+    font-size:40px;
+    position:absolute;
+    top:15px;
+    left:440px;
+    z-index: 2;     /* 防止被光线挡住引起hover中断 */
+    cursor:pointer;
+}
+
+#backToMyRank{      /* 用户图标小一点好看 */
+    font-size:30px;
+    top:20px;
+    left:445px;
+}
+
+#goToRankList:hover, #backToMyRank:hover{
+    -webkit-animation-name: swing;
+    -webkit-animation-duration: 0.6s;
+    animation-name: swing;
+    animation-duration: 0.6s;
+}
+
+/* 我的排行 */
+.myRank{
+    position:relative;
+    top:50px;
+    left:-65px;
+}
+
+.superior{
+    position:absolute;
+    top:85px;
+    left:225px;
+    font-size: 20px;
+}
+
+/*.rankPart:after{    暂时用父结点
+    content:"|"; */
+.divider{
+    font-size: 130px;
+    font-family: SentyBrush;
+
+    position:absolute;
+    top:70px;
+    left:220px;
+
+    transform: rotate(45deg);
+    -ms-transform: rotate(45deg);	/* IE 9 */
+    -moz-transform: rotate(45deg); 	/* Firefox */
+    -webkit-transform: rotate(45deg);/* Safari 和 Chrome */
+    -o-transform: rotate(45deg); 	/* Opera */
+}
+
+/* 我的百分比 */
+.myPercentage{
+    position:relative;
+    top:20px;
+    left:100px;
+}
+
+
+/* 排行榜 */
+.rankList{
+    height:320px;
+    overflow: auto;
+
+    margin-top: 20px;
+}
+
+.rankList::-webkit-scrollbar {/*滚动条整体样式*/
+    width: 14px;
+    height: 14px;
+    z-index:2;  /* 防止被光线遮挡而滚动不了 */
+}
+
+.rankList::-webkit-scrollbar-thumb {/*滚动条里面小方块*/
+    border-radius: 999px;
+    border: 5px solid transparent;
+
+    height:30px;
+    background-clip: content-box;
+    box-shadow: 0 0 0 5px rgba(52,73,94,0.9) inset;
+    z-index:2;  /* 防止被光线遮挡而滚动不了 */
+}
+
+.rankList::-webkit-scrollbar-track {/*滚动条里面轨道*/
+    border-radius: 999px;
+    border: 5px solid transparent;
+    box-shadow: 1px 1px 5px rgba(0,0,0,.2) inset;
+}
+
+.rankList::-webkit-scrollbar-corner {
+    background: transparent;
+}
+
+
+.rankItem{
+    width: inherit;     /* 保证父节点变形后子节点长度跟着变 */
+    padding-left: 15%;
+    padding-top:5px;
+}
+
+.rankItemActive{
+    background-color: #34495e;
+    border-radius: 10px;
+    color:white;
+}
+
+.rankNum{
+    width:27px;
+    height: 27px;
+    margin-right: 30px;
+    border-radius: 15px;
+
+    text-align: center;
+    font-size:18px;
+}
+
+.theFirst{
+    background-color: gold;
+}
+
+.theSecond{
+    background-color: silver;
+}
+
+.theThird{
+    background-color: sandybrown;
+}
+
+.rankUsername{
+    width:200px;
+
+    font-family: SentyTea;
+    font-weight: bold;
+    font-size:22px;
+}
+
+.rankScore{
+    width: auto;
+    margin-left: 30px;
+
+    font-size:18px;
+    letter-spacing: 1px;
+}
+
+
+/* hover一道光划过的特效 */
+.profile-container:before, .scorePart:before, .taskInfoPart:before{
+    content: ""; position: absolute; width:200px; height: 100%; top: 0; left: -150px; overflow: hidden;
+    background: -moz-linear-gradient(left, rgba(255,255,255,0)0, rgba(255,255,255,.2)50%, rgba(255,255,255,0)100%);
+    background: -webkit-gradient(linear, left top, right top, color-stop(0%, rgba(255,255,255,0)), color-stop(50%, rgba(255,255,255,.2)), color-stop(100%, rgba(255,255,255,0)));
+    background: -webkit-linear-gradient(left, rgba(255,255,255,0)0, rgba(255,255,255,.2)50%, rgba(255,255,255,0)100%);
+    background: -o-linear-gradient(left, rgba(255,255,255,0)0, rgba(255,255,255,.2)50%, rgba(255,255,255,0)100%);
+    -webkit-transform: skewX(-25deg);
+    -moz-transform: skewX(-25deg);
+    z-index:-1;  /* 保证置于顶层 */
+}
+
+.rankPart:before{
+      content: ""; position: absolute; width:200px; height: 100%; top: 0; left: 30px; overflow: hidden;
+      background: -moz-linear-gradient(left, rgba(255,255,255,0)0, rgba(255,255,255,.2)50%, rgba(255,255,255,0)100%);
+      background: -webkit-gradient(linear, left top, right top, color-stop(0%, rgba(255,255,255,0)), color-stop(50%, rgba(255,255,255,.2)), color-stop(100%, rgba(255,255,255,0)));
+      background: -webkit-linear-gradient(left, rgba(255,255,255,0)0, rgba(255,255,255,.2)50%, rgba(255,255,255,0)100%);
+      background: -o-linear-gradient(left, rgba(255,255,255,0)0, rgba(255,255,255,.2)50%, rgba(255,255,255,0)100%);
+      -webkit-transform: skewX(-25deg);
+      -moz-transform: skewX(-25deg);
+      z-index:-1;  /* 保证置于顶层 */
+}
+
+/* Score hover一道光划过的特效 */
+.scorePart:hover:before, .taskInfoPart:hover:before{
+    left: 150%;
+    transition: left 1s ease 0s;
+    z-index:1;  /* 保证置于顶层 */
+}
+
+.rankPart:hover:before{
+      left: 150%;
+      transition: left 1.5s ease 0s;
+      z-index:1;  /* 保证置于顶层 */
+}
+
+/* Profile hover一道光划过的特效 */
+.profile-container:hover:before {
+    left: 150%;
+    transition: left 2s ease 0s;
+    z-index:1;  /* 保证置于顶层 */
+}
+
+
+/* Charts */
+
+/* 收起展开Charts */
+.chartsLabel{
+    position: relative;
+    left: 50%;
+    padding-left: 10px;
+    padding-top: 30px;      /* padding才能占据一定的高度，不被navbar挡住 */
+    margin: 0px 0 0px -450px;
+
+    width: 200px;
+    color:#34495e;
+    font-size: 20px;
+    font-weight: bold;
+    font-family: SentyBrush;
+    letter-spacing: 1px;
+}
+
+#showCharts:hover{
+    cursor: pointer;
+    -webkit-animation-name: rubberBand;
+    -webkit-animation-duration: 0.6s;
+    animation-name: rubberBand;
+    animation-duration: 0.6s;
+}
+
+#charts{
+    position: relative;
+    left: 50%;
+    margin: 20px 0 20px -400px;
+}
+
+#abilityChart{
+    position:relative;
+    width:520px;
+    height:420px;
+    margin-bottom: 30px;
+    /*border:1px solid red;*/
+}
+
+#abilityTips{
+    /*
+    background:url(../img/decoration/brushBackground.png);
+    background-size: 100% 100%;
+    */
+    position:absolute;          /* 绝对定位 */
+    left:520px;
+    top:0px;
+    width:380px;
+    height:420px;
+    /*border:1px solid red;*/
+    font-family: SentyTea;
+    font-weight: bold;
+
+    padding:120px 0 0 20px;
+}
+
+#abilityTipsTitle{
+    font-family: SentyBrush;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+#abilityTipsBorder{
+    width:310px;
+    height:auto;
+    /*border:1px solid red;*/
+    padding:10px;
+}
+
+#tagNumChart, #categoryChart{
+    width:800px;
+    height:420px;
+}
+
+
+
+/*faceID*/

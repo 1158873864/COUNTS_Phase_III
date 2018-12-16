@@ -1,0 +1,322 @@
+
+/* Statistics */
+
+
+#statistics{
+    position: relative;
+    left: 50%;
+    margin: 0 0 20px -400px;
+}
+
+.taskNumPart, .progressOverallPart{
+    position: relative;
+    width:200px;
+    height:200px;
+    padding-top:35px;
+
+    border-radius: 15px;    /* ÆÁ±ÎËÄ¸ö½Ç */
+    /* ËÄ½ÇÑùÊ½ */
+    background: linear-gradient(to left, #34495e, #34495e) left top no-repeat,
+    linear-gradient(to bottom, #34495e, #34495e) left top no-repeat,
+    linear-gradient(to left, #34495e, #34495e) right top no-repeat,
+    linear-gradient(to bottom, #34495e, #34495e) right top no-repeat,
+    linear-gradient(to left, #34495e, #34495e) left bottom no-repeat,
+    linear-gradient(to bottom, #34495e, #34495e) left bottom no-repeat,
+    linear-gradient(to left, #34495e, #34495e) right bottom no-repeat,
+    linear-gradient(to left, #34495e, #34495e) right bottom no-repeat;
+    background-size: 2px 30px, 30px 2px, 2px 30px, 30px 2px;
+
+    font-family: SentyBrush;
+
+    transition-duration: .1s;
+    -moz-transition-duration: .1; /* Firefox 4 */
+    -webkit-transition-duration: .1s; /* Safari ºÍ Chrome */
+    -o-transition-duration: .1s; /* Opera */
+}
+
+.taskNumPart:hover, .progressOverallPart:hover{
+    transform: scale(0.9);
+    -ms-transform:scale(0.9);	/* IE 9 */
+    -moz-transform:scale(0.9); 	/* Firefox */
+    -webkit-transform:scale(0.9);/* Safari ºÍ Chrome */
+    -o-transform:scale(0.9); 	/* Opera */
+}
+
+.taskNum, .progressOverall{
+    width:180px;
+    margin:0 auto;
+
+    text-align: center;
+    font-size:60px;
+    font-family: "Josefin Sans";
+}
+
+.taskNumLabel, .progressOverallLabel, .participantLabel{
+    position:absolute;
+    bottom:0;
+    width: inherit;     /* ±£Ö¤¸¸½Úµã±äÐÎºó×Ó½Úµã³¤¶È¸ú×Å±ä */
+    text-align: center;
+
+    background-color: #34495e;
+    border-bottom-left-radius: 12px;
+    border-bottom-right-radius: 12px;
+
+    color:white;
+    font-size: 30px;
+}
+
+.taskNumLabel{
+    font-size:24px;
+    line-height: 50px;
+}
+
+/* Progress */
+#progressOverallPart{
+    margin-top: 30px;   /* ºÍscoreµÄ¼ä¾à */
+}
+
+/* Participant */
+.participantPart{
+    position: absolute;
+    left:300px;
+    top:0px;
+    width:500px;
+    height:430px;
+    /*padding-top:35px;*/
+
+    border-radius: 15px;    /* ÆÁ±ÎËÄ¸ö½Ç */
+    /* ËÄ½ÇÑùÊ½ */
+    background: linear-gradient(to left, #34495e, #34495e) left top no-repeat,
+    linear-gradient(to bottom, #34495e, #34495e) left top no-repeat,
+    linear-gradient(to left, #34495e, #34495e) right top no-repeat,
+    linear-gradient(to bottom, #34495e, #34495e) right top no-repeat,
+    linear-gradient(to left, #34495e, #34495e) left bottom no-repeat,
+    linear-gradient(to bottom, #34495e, #34495e) left bottom no-repeat,
+    linear-gradient(to left, #34495e, #34495e) right bottom no-repeat,
+    linear-gradient(to left, #34495e, #34495e) right bottom no-repeat;
+    background-size: 2px 30px, 30px 2px, 2px 30px, 30px 2px;
+
+    font-family: SentyBrush;
+
+    transition-duration: .1s;
+    -moz-transition-duration: .1; /* Firefox 4 */
+    -webkit-transition-duration: .1s; /* Safari ºÍ Chrome */
+    -o-transition-duration: .1s; /* Opera */
+}
+
+
+/* ÈÎÎñÁÐ±í */
+.taskName{
+    height:380px;
+    width:250px;
+    overflow: hidden;
+    float:left;
+    /*margin-top: 20px;*/
+}
+
+.taskNameTitle{
+    width: inherit;
+    line-height: 55px;
+    text-align: center;
+    font-size: 20px;
+    text-decoration: underline;
+}
+
+.taskNameList{
+    height:330px;
+    overflow: auto;
+}
+
+.taskNameList::-webkit-scrollbar {/*¹ö¶¯ÌõÕûÌåÑùÊ½*/
+    display: none;      /*ÉèÖÃÎªÒþ²Ø*/
+    width: 14px;
+    height: 14px;
+    z-index:2;  /* ·ÀÖ¹±»¹âÏßÕÚµ²¶ø¹ö¶¯²»ÁË */
+}
+
+.taskNameList::-webkit-scrollbar-thumb {/*¹ö¶¯ÌõÀïÃæÐ¡·½¿é*/
+    border-radius: 999px;
+    border: 5px solid transparent;
+
+    height:30px;
+    background-clip: content-box;
+    box-shadow: 0 0 0 5px rgba(52,73,94,0.9) inset;
+    z-index:2;  /* ·ÀÖ¹±»¹âÏßÕÚµ²¶ø¹ö¶¯²»ÁË */
+}
+
+.taskNameList::-webkit-scrollbar-track {/*¹ö¶¯ÌõÀïÃæ¹ìµÀ*/
+    border-radius: 999px;
+    border: 5px solid transparent;
+    box-shadow: 1px 1px 5px rgba(0,0,0,.2) inset;
+}
+
+.taskNameList::-webkit-scrollbar-corner {
+    background: transparent;
+}
+
+.noTask{
+    width: inherit;     /* ±£Ö¤¸¸½Úµã±äÐÎºó×Ó½Úµã³¤¶È¸ú×Å±ä */
+    text-align: center;
+    font-family: SentyTea;
+    font-weight: bold;
+    font-size: 20px;
+
+    margin-top:120px;
+}
+
+.taskItem{
+    width: inherit;     /* ±£Ö¤¸¸½Úµã±äÐÎºó×Ó½Úµã³¤¶È¸ú×Å±ä */
+    text-align: center;
+    font-family: SentyTea;
+    font-weight: bold;
+    font-size: 20px;
+    border-bottom-left-radius: 10px;
+    border-top-left-radius: 10px;
+
+    padding-top:3px;    /* ÈÎÎñÖ®¼äµÄ¼ä¾à */
+    padding-bottom: 3px;
+
+    cursor:pointer;
+}
+
+.taskItemActive{    /* ÒÔ·ÀtaskItemµÄhover¶ÔÆä²úÉúÓ°Ïì£¬ºÍtaskItem¶ÀÁ¢¿ªÀ´ */
+    width: inherit;     /* ±£Ö¤¸¸½Úµã±äÐÎºó×Ó½Úµã³¤¶È¸ú×Å±ä */
+    text-align: center;
+    font-family: SentyTea;
+    font-size: 20px;
+    border-bottom-left-radius: 10px;
+    border-top-left-radius: 10px;
+
+    padding-top:3px;
+    padding-bottom: 3px;
+
+    cursor:pointer;
+
+    background-color: #34495e;
+    color:white;
+    font-weight: normal;
+}
+
+.taskItem:hover{
+    background-color: rgba(52,73,94,0.5);
+}
+
+/* ²ÎÓëÕßÓÒ°ë²¿·Ö */
+.participant{
+    height:380px;
+    width:250px;
+    overflow: hidden;     /* ²»ÉèÖÃfloatÖ»ÉèÖÃoverflow£ºauto£¬ÔòÕ¼¾ÝÊ£Óà¿í¶È? */ /* ÕâÀï½ûÖ¹¹ö¶¯Ìõ */
+    padding-top: 15px;
+    /*margin-top: 20px;*/
+    border-top-right-radius: 15px;
+    background-color: #34495e;
+    color:white;
+}
+
+.progressForTheTask{
+    height: 35px;
+    position:relative;
+    text-align: right;
+    padding-right: 15px;
+
+}
+
+.participantList{       /* ²ÎÓëÕßÁÐ±íÉèÖÃÎª¿É¹ö¶¯ */
+    height:330px;
+    overflow: auto;
+}
+
+.participantList::-webkit-scrollbar {/*¹ö¶¯ÌõÕûÌåÑùÊ½*/
+    width: 14px;
+    height: 14px;
+    z-index:2;  /* ·ÀÖ¹±»¹âÏßÕÚµ²¶ø¹ö¶¯²»ÁË */
+}
+
+.participantList::-webkit-scrollbar-thumb {/*¹ö¶¯ÌõÀïÃæÐ¡·½¿é*/
+    border-radius: 999px;
+    border: 5px solid transparent;
+
+    height:30px;
+    background-clip: content-box;
+    box-shadow: 0 0 0 5px rgba(255,255,255,0.5) inset;
+    z-index:2;  /* ·ÀÖ¹±»¹âÏßÕÚµ²¶ø¹ö¶¯²»ÁË */
+}
+
+.participantList::-webkit-scrollbar-track {/*¹ö¶¯ÌõÀïÃæ¹ìµÀ*/
+    border-radius: 999px;
+    border: 5px solid transparent;
+    box-shadow: 1px 1px 5px rgba(0,0,0,0) inset;    /* Í¸Ã÷ */
+}
+
+.participantList::-webkit-scrollbar-corner {
+    background: transparent;
+}
+
+.noParticipant{
+    width: inherit;     /* ±£Ö¤¸¸½Úµã±äÐÎºó×Ó½Úµã³¤¶È¸ú×Å±ä */
+    text-align: center;
+    font-family: SentyTea;
+    font-size: 20px;
+
+    margin-top:125px;
+}
+
+
+.participantItem{
+    width: inherit;     /* ±£Ö¤¸¸½Úµã±äÐÎºó×Ó½Úµã³¤¶È¸ú×Å±ä */
+
+    font-family: SentyTea;
+    font-weight: normal;
+    font-size: 20px;
+
+    padding: 5px 0px 5px 40px;
+}
+
+.circleBeforeName{
+    font-size:8px;  /* ²»ÄÜÔÙÐ¡ÁË */
+    padding-right: 5px;
+}
+
+
+/* hoverÒ»µÀ¹â»®¹ýµÄÌØÐ§ */
+.profile-container:before, .taskNumPart:before, .progressOverallPart:before{
+    content: ""; position: absolute; width:200px; height: 100%; top: 0; left: -150px; overflow: hidden;
+    background: -moz-linear-gradient(left, rgba(255,255,255,0)0, rgba(255,255,255,.2)50%, rgba(255,255,255,0)100%);
+    background: -webkit-gradient(linear, left top, right top, color-stop(0%, rgba(255,255,255,0)), color-stop(50%, rgba(255,255,255,.2)), color-stop(100%, rgba(255,255,255,0)));
+    background: -webkit-linear-gradient(left, rgba(255,255,255,0)0, rgba(255,255,255,.2)50%, rgba(255,255,255,0)100%);
+    background: -o-linear-gradient(left, rgba(255,255,255,0)0, rgba(255,255,255,.2)50%, rgba(255,255,255,0)100%);
+    -webkit-transform: skewX(-25deg);
+    -moz-transform: skewX(-25deg);
+    z-index:-1;  /* ±£Ö¤ÖÃÓÚ¶¥²ã */
+}
+
+.participantPart:before{
+    content: ""; position: absolute; width:200px; height: 100%; top: 0; left: 30px; overflow: hidden;
+    background: -moz-linear-gradient(left, rgba(255,255,255,0)0, rgba(255,255,255,.2)50%, rgba(255,255,255,0)100%);
+    background: -webkit-gradient(linear, left top, right top, color-stop(0%, rgba(255,255,255,0)), color-stop(50%, rgba(255,255,255,.2)), color-stop(100%, rgba(255,255,255,0)));
+    background: -webkit-linear-gradient(left, rgba(255,255,255,0)0, rgba(255,255,255,.2)50%, rgba(255,255,255,0)100%);
+    background: -o-linear-gradient(left, rgba(255,255,255,0)0, rgba(255,255,255,.2)50%, rgba(255,255,255,0)100%);
+    -webkit-transform: skewX(-25deg);
+    -moz-transform: skewX(-25deg);
+    z-index:-1;  /* ±£Ö¤ÖÃÓÚ¶¥²ã */
+}
+
+/* Score hoverÒ»µÀ¹â»®¹ýµÄÌØÐ§ */
+.taskNumPart:hover:before, .progressOverallPart:hover:before{
+    left: 150%;
+    transition: left 1s ease 0s;
+    z-index:1;  /* ±£Ö¤ÖÃÓÚ¶¥²ã */
+}
+
+.participantPart:hover:before{
+    left: 150%;
+    transition: left 1.5s ease 0s;
+    z-index:1;  /* ±£Ö¤ÖÃÓÚ¶¥²ã */
+}
+
+/* Profile hoverÒ»µÀ¹â»®¹ýµÄÌØÐ§ */
+.profile-container:hover:before {
+    left: 150%;
+    transition: left 2s ease 0s;
+    z-index:1;  /* ±£Ö¤ÖÃÓÚ¶¥²ã */
+}

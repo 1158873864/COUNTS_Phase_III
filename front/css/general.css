@@ -1,0 +1,455 @@
+/*General */
+
+body, html {
+	height: 100%;
+	width: 100%;
+	overflow-x:hidden;
+}
+
+::-moz-selection{background:#1abc9c;color:white}
+
+::selection{background:#1abc9c;color:white}
+
+.abcen{position: absolute;bottom: 8%;}
+
+.abcen1{position: absolute;top: 20%;}
+
+.content-section-c {
+	border-top: 1px solid #32465A;
+	border-bottom: 1px solid #32465A;
+	background-color: #34495e;
+	padding: 90px 0;
+}
+
+.float {
+-webkit-animation-name: floatingx;
+-webkit-animation-duration: 4s;
+-webkit-animation-iteration-count: infinite;
+-webkit-animation-timing-function: ease-in-out;
+-moz-animation-name: floating;
+-moz-animation-duration: 4s;
+-moz-animation-iteration-count: infinite;
+-moz-animation-timing-function: ease-in-out;
+}
+
+.phone-image {
+max-width: 250px;
+margin: auto;
+}
+
+.h1_home{
+	/*font-size: 80px;
+	font-family: arvo;
+	font-weight: 300;*/
+	font-size: 90px;
+	font-family: SentyTea;		/* 标题字体 */
+	letter-spacing: 6px;
+}
+
+.h3_home{font-weight: 300;}
+
+
+
+/* Preloader */
+#preloader {
+	position: fixed;
+	top:0;
+	left:0;
+	right:0;
+	bottom:0;
+	background-color:#fff; /* change if the mask should have another color then white */
+	z-index:99; /* makes sure it stays on top */
+}
+
+#status {
+	width:200px;
+	height:200px;
+	position:absolute;
+	left:50%; /* centers the loading animation horizontally one the screen */
+	top:50%; /* centers the loading animation vertically one the screen */
+	background-image:url(../img/status.gif); /* path to the loading animation */
+	background-repeat:no-repeat;
+	background-position:center;
+	margin:-100px 0 0 -100px; /* is width and height divided by two */
+}
+
+
+/* Button */ 
+.mybutton_standard {
+	border: 1px solid #fff;
+	color: #fff;
+}
+
+.mybutton_cyano{
+	border: 1px solid #4A90BE;
+	color: #fff;
+	background-color:#4A90BE;
+}
+
+.mybutton_cyano:hover{
+	border: 1px solid #4A90BE;
+	/* color: #4A90BE !important; */
+        color: #FF66CC !important;
+	background: rgba(204, 204, 204, 0);
+}
+
+.button_down img {
+width: 50px;
+	
+}
+.btn-primary {
+	border-color: rgba(52, 73, 94, 0);
+}
+
+.tworow{margin-top: 30px;}
+
+
+
+/* Nav */
+.navbar {
+	position: relative;
+	min-height: 60px;
+	margin-bottom: 0; 
+	width: 100%;
+	z-index: 999;
+	border-radius: 0; 
+}
+
+.navbar-default {
+	position: relative;
+	min-height: 60px;
+	width: 100%;
+	z-index: 999;
+	
+}
+
+.navbar-default .navbar-nav>li>a {
+color: #ffffff;
+}
+
+.navbar-default .navbar-nav>li>a:hover {
+color: #1abc9c;
+}
+
+.navbar-default .navbar-nav>li.active {	/* ѡ�е�������ʽ */
+color: #1abc9c;
+}
+
+.navbar-default .navbar-brand {
+color: #ffffff;
+}
+.navbar-default .navbar-brand:hover {
+color: #ECEBEB;
+}
+
+.navbar-brand {
+	font-family: arvo;
+	letter-spacing: 3px;
+	font-weight: 400 !important;
+}
+
+.lead {
+	font-size: 16px;
+	font-weight: 400;
+}
+
+.intro-header {
+	height: 100%; /* Full Page */
+	padding-top: 50px; /* When making other pages, make sure there is 50px of padding to make sure the navbar doesn't overlap content! */
+	padding-bottom: 50px;
+	color: #f8f8f8;
+	background: url(../img/intro/flower.jpg) no-repeat center center;    /* Background for Introduction Here */
+	background-size: cover;
+	text-align: center;
+
+	position:relative;	/* 为了能有效地设置z-index，必须设置成relative/absolute/fixed */
+}
+
+.intro-message {
+	position: relative;
+	padding-top: 12%;
+	padding-bottom: 20%;
+}
+
+.list-inline {
+	margin-top: 30px;
+}
+.intro-message > h1 {
+	margin: 0;
+	font-size: 5em;
+	font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-weight: 400;
+	letter-spacing: 3px;
+}
+
+.intro-divider {
+	width: 400px;
+	border-top: 1px solid #f8f8f8;
+	border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.intro-message > h3 {
+	margin: 0;
+	font-size: 2.8em;
+	font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-weight: 300;
+	letter-spacing: 0px;
+	margin-top: 10px;
+}
+
+
+.network-name {
+	font-size: 14px;
+	font-weight: 400;
+	letter-spacing: 1.5px;
+}
+
+
+
+/* Only use in two 90px-paddings */
+.content-section-a {
+	background-color: #f8f8f8;
+	padding: 90px 0; 
+}
+
+.content-section-b {
+	border-top: 1px solid #e7e7e7;
+	border-bottom: 1px solid #e7e7e7;
+	padding: 90px 0; 
+}
+
+
+/* Animate */
+.rotate{
+    -webkit-transition-duration: 0.8s;
+    -moz-transition-duration: 0.8s;
+    -o-transition-duration: 0.8s;
+    transition-duration: 0.8s;
+     
+    -webkit-transition-property: -webkit-transform;
+    -moz-transition-property: -moz-transform;
+    -o-transition-property: -o-transform;
+    transition-property: transform;
+     
+    overflow:hidden;
+ 
+    }  
+ 
+.rotate:hover  
+{
+    -webkit-transform:rotate(360deg);
+    -moz-transform:rotate(360deg);
+    -o-transform:rotate(360deg);
+}  
+
+
+
+/* Style for form modal */
+.content-style-form {
+	position: relative;
+	text-align: left;
+}
+
+.content-style-form h2 {
+	margin: 0;
+	padding: 0.4em 0 0.3em;
+	text-align: center;
+	font-weight: 300;
+	font-size: 3.5em;
+}
+
+.content-style-form form {
+	padding: 10px 30px;
+}
+
+.content-style-form form p {
+	margin: 0 0 5px 0;
+	font-size: 0.7em;
+}
+
+.content-style-form label {
+	display: block;
+	padding: 10px 0 0;
+	color: #34495e;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	font-weight: bold;
+}
+
+.content-style-form input[type="text"],
+.content-style-form input[type="password"] {
+	padding: 10px;
+	width: 100%;
+	border: 2px solid #ebd3bd;
+	background: transparent;
+	color: #b09a86;
+	font-weight: 300;
+	font-size: 2.2em;
+}
+
+.content-style-form input[type="text"]:focus,
+.content-style-form input[type="password"]:focus {
+	border-color: #e75854;
+	color: #e75854;
+}
+
+.content-style-form input:focus {
+	outline: 0;
+}
+
+
+/*The Send Button*/
+.content-style-form button {
+	display: block;
+	margin-top: 0.5em;  
+	padding: 1.5em;
+	width: 100%;
+	border: none;
+	background: #e75854;
+	color: #fff;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	font-weight: 800;
+	font-size: 1.25em;
+}
+
+
+.content-style-form-4 form {
+	padding: 10px 30px;         /* Contact Box inner padding */
+	background: #fff;
+	color: #e75854;			/* Email Text Color Here */
+	font-size: 1.5em;
+	-webkit-perspective: 1000px;
+	perspective: 1000px;
+}
+
+.content-style-form-4 input[type="text"] {
+	border: none;
+	background-color: #f0f0f0;
+}
+
+.content-style-form-4 form button {
+	background: #34495e;
+}
+
+.content-style-form-4 form button:focus,
+.content-style-form-4 form button:hover {
+	background: #1abc9c;
+}
+
+.js .content-style-form-4 p {
+	opacity: 0;
+	-webkit-transition: opacity 0.3s, -webkit-transform 0.3s;
+	transition: opacity 0.3s, transform 0.3s;
+	-webkit-transform: rotateX(-45deg);
+	transform: rotateX(-45deg);
+	-webkit-transform-origin: center top;
+	transform-origin: center top;
+}
+
+.morph-button.open .content-style-form-4 p {
+	opacity: 1;
+	-webkit-transition: opacity 0.4s 0.2s, -webkit-transform 0.4s 0.2s;
+	transition: opacity 0.4s 0.2s, transform 0.4s 0.2s;
+	-webkit-transform: rotateY(0deg);
+	transform: rotateY(0deg);
+}
+
+.morph-button.open .content-style-form-4 p:nth-child(2) {
+	-webkit-transition-delay: 0.35s;
+	transition-delay: 0.35s;
+}
+
+
+.morph-button-inflow.open .content-style-social a {
+	-webkit-transform: translateX(0);
+	transform: translateX(0);	
+}
+
+.morph-button-inflow.open .content-style-social a:nth-child(2) {
+	-webkit-transition-delay: 0.05s;
+	transition-delay: 0.05s;
+}
+
+.morph-button-inflow.open .content-style-social a:nth-child(3) {
+	-webkit-transition-delay: 0.1s;
+	transition-delay: 0.1s;
+}
+
+/* Morph Button: Default Styles */
+
+.morph-button {
+	position: relative;
+	display: block;
+	margin: 0 auto;
+}
+
+.morph-button > button {
+	position: relative;
+	padding: 0 1em;
+	border: none;
+	background-color: #e85657;
+	color: #f9f6e5;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	font-weight: 700;
+	line-height: 80px;
+	overflow: hidden;
+}
+
+.morph-button.open > button {
+	pointer-events: none;
+}
+
+.morph-content {
+	pointer-events: none;
+}
+
+.morph-button.open .morph-content {
+	pointer-events: auto;
+}
+
+
+/* Morph Button Style: In the content flow */
+.morph-button-inflow {
+	overflow: hidden;
+	max-width: 100%;
+	height: 70px;
+}
+
+.morph-button-inflow > button {
+	width: 100%;
+	line-height: 70px;
+}
+
+.morph-button-inflow .morph-content {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+}
+
+.morph-button-inflow .morph-content .morph-clone {
+	padding: 0;
+	font-weight: 700;
+	font-size: 1.5em;
+	line-height: 70px;
+}
+
+/* Colors and sizes for individual in flow buttons */
+.morph-button-inflow-1 {
+	width: 600px;
+	margin: 2em auto;
+	-webkit-transition: height 0.5s cubic-bezier(0.7,0,0.3,1);
+	transition: height 0.5s cubic-bezier(0.7,0,0.3,1);
+}
+
+.morph-button-inflow-1 > button span {
+	visibility: hidden;
+}
+
+.morph-button-inflow-1 .morph-content .morph-clone {
+	color: #FFFFFF;
+	background: #1abc9c;
+}
+

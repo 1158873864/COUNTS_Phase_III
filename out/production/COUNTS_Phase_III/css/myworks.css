@@ -1,0 +1,760 @@
+﻿/*Myworks*/
+
+/*task*/
+.taskList {
+    padding: 2% 0% 2% 5.2%;
+    width: 64%;
+
+    margin: auto;
+    max-height:860px;	/* 用最大高度代替高度，则页面可根据具体行数来伸缩 */
+    min-height: 556px;  /*  与查找不到任务时的高度保持一致 */
+}
+
+.noTaskAvailable{
+    height: 500px;
+    text-align: center;
+    padding-top: 250px;
+    font-family: SentyTea;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+/*把工具栏移出所添加的css*/
+.tools{
+    position: relative;
+    right:16%;
+    margin-bottom:-2%;
+
+    /*设置字体*/
+    font-family: "SentyTea";
+    letter-spacing: 1px;
+    font-size: 17px;
+    font-weight: bold;
+
+    -webkit-animation-name: pulse;  /*工具栏动画*/
+    -webkit-animation-duration: 0.6s;
+    animation-name: pulse;
+    animation-duration: 0.6s;
+}
+
+.tools:after {  /*消除float副作用*/
+    clear: both;
+    content: "";
+    display: table;
+}
+
+#searchAllTask{
+    display:inline-block;
+    float: right;
+    width: 95px;
+    margin-right: 15px;
+
+    margin-top: -1px;   /*保证和图标中线在同一水平线上*/
+    margin-bottom: 11px;
+
+    letter-spacing: 1px;
+    color: #34495e;
+
+    outline: none;
+    border:1px solid;
+    border-radius: 5px;
+    padding-left: 8px;
+
+    -webkit-transition:width linear .3s,box-shadow linear .5s;   /*从focus返回的样式*/
+}
+
+/* 设置文字选中样式 */
+#searchAllTask::-moz-selection{background-color:#1abc9c;color:white}
+#searchAllTask::selection{background-color:#1abc9c;color:white}
+
+#searchAllTask:focus{
+    box-shadow: 0 0 3px deepskyblue;
+    width:270px;
+    -webkit-transition:width linear .4s,box-shadow linear .5s;   /*margin也要线性变化，防止float影响*/
+}
+
+/* 屏幕小时搜索框长度也变小 */
+@media only screen and (max-width: 1200px){
+    #searchAllTask:focus{
+        width:160px;
+    }
+    .taskList {
+        min-height:1560px;	/* 用最大高度代替高度，则页面可根据具体行数来伸缩 */
+    }
+}
+
+.searchTaskIcon{
+    float: right;
+    margin-right: 15px;
+    margin-top:1px;
+    cursor: pointer;
+    display:inline-block;
+}
+
+.searchTaskIcon :hover{
+    color:royalblue;
+
+    -webkit-animation-name: swing;
+    -webkit-animation-duration: 0.6s;
+    animation-name: swing;
+    animation-duration: 0.6s;
+}
+
+.task {
+    position:relative;	/* 为了图片上的标记定位 */
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    cursor: pointer;
+    float: left;
+    transition: 0.3s;
+    width: 240px;
+    margin: 10px 15px; /* to be changed according to the page*/
+
+    z-index:1;
+}
+
+.task:hover{
+    box-shadow:0 0px 16px 0 rgba(0, 0, 0, 0.35), 0 6px 20px 0 rgba(0, 0, 0, 0.34);  /* 选中后阴影加深加大 */
+    opacity:0.9;    /* 选中后稍微透明体现出高亮效果 */
+}
+
+/* 下层照片1 */
+.task:before{
+    content:"";
+    width: 240px;
+    height:220px;
+    position:absolute;
+    left:0;
+    top:0;
+    z-index:-1;
+    color:white;
+    box-shadow:  0 0px 10px 0 rgba(0, 0, 0, 0.26);
+
+    transform:rotate(4deg);
+    -ms-transform:rotate(4deg); 	/* IE 9 */
+    -moz-transform:rotate(4deg); 	/* Firefox */
+    -webkit-transform:rotate(4deg); /* Safari 和 Chrome */
+    -o-transform:rotate(4deg); 	/* Opera */
+}
+
+/* 下层照片2 */
+.task:after{
+    content:"";
+    width: 240px;
+    height:220px;
+    position:absolute;
+    left:0;
+    top:0;
+    z-index:-1;
+    color:white;
+    box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.25), 0 3px 20px 0 rgba(0, 0, 0, 0.26);
+
+    transform:rotate(-7deg);
+    -ms-transform:rotate(-7deg); 	/* IE 9 */
+    -moz-transform:rotate(-7deg); 	/* Firefox */
+    -webkit-transform:rotate(-7deg); /* Safari 和 Chrome */
+    -o-transform:rotate(-7deg); 	/* Opera */
+}
+
+.taskTitle {
+    text-align: center;
+    padding: 20px 10px 20px 10px;
+    height: 60px;
+    overflow: auto;
+    font-family: 'Josefin Sans';
+    font-weight:700;
+    font-size:14px;
+    line-height:1.42857143;
+    color: #34495e;
+
+    background-color: white;    /*原来是透明的，要设成白的遮住after元素*/
+    z-index:inherit;
+}
+
+
+
+.album {
+    width:1000px;
+    height:1000px;	/*相册高度 */
+    margin: -2% auto 0; /*上 左右 下  上抵消掉taskList的padding-top：2%， 左右auto来居中*/
+}
+
+/* 标题 */
+#watermarkForAlbumTitle .marker{
+    position: absolute;
+    font-size: 50px;
+    opacity: 0.2;
+    font-family: "SentyBrush","SentyTea";
+    text-transform: uppercase;
+    left: 2px;
+    top: -5px;
+}
+
+#watermarkForAlbumTitle{
+    position: relative;
+    top:0.5%;
+    margin-bottom: 1%;
+}
+
+.page-title{
+    position: relative;
+    display: inline-block;
+    font-family: "SentyBrush","SentyTea";
+    letter-spacing: 2px;
+    font-size: 30px;
+}
+
+.page-title:after,.page-title:before{
+    content: '';
+    position: absolute;
+    height: 1px;
+    background-color: #4b6075;
+    left: 0;
+    margin: 2px;
+}
+
+.page-title:after{
+    width: 75%;
+    top: -9px;
+
+}
+
+.page-title:before{
+    width: 40%;
+    bottom: -7px;
+}
+
+/*返回按钮*/
+#backToTaskListButton{
+    float: right;
+    width: 82px;    /*决定了文字和图标之间的距离*/
+
+    font-size:19px;
+    color: #34495e;
+
+    margin-top: -3%;
+    margin-right: -14%;  /*抵消父结点tool中right：16%的影响*/
+}
+
+.backToTaskListIcon{
+    float: right;
+    margin-right: 15px;
+    margin-top:7px;
+    cursor: pointer;
+}
+
+#backToTaskListButton :hover{
+    color:indianred;
+
+    -webkit-animation-name: swing;
+    -webkit-animation-duration: 0.6s;
+    animation-name: swing;
+    animation-duration: 0.6s;
+}
+
+
+/* photo */
+.photo {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    cursor: pointer;
+    float: left;
+    transition: 0.3s;
+    width: 300px;
+    height: 395px;  /* max height of the pic(����ͼ) is about 320px */
+    margin: 10px 15px; /* to be changed according to the page*/
+}
+
+.image:hover {opacity: 0.7;}
+
+.description {
+    text-align: center;
+    padding: 30px 10px;
+    height: 130px;
+    overflow: auto;
+    font-family: 'Josefin Sans';
+    font-weight:700;
+    font-size:14px;
+    line-height:1.42857143;
+}
+
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1000; /* Sit on top */
+    padding: 5% 25% 20% 25%;  /*Location of the box, according to screen */
+    left: 0;
+    top: 0;
+    width: 100%; /* according to screen */
+    height: auto; /* auto height */
+    overflow: hidden;
+    background-color: rgba(255,255,255,0.7); /* white, opacity */
+}
+
+/* Modal Content (image) */
+.modal-content {
+    margin: auto;
+    display: block;
+    width: 100%;
+    max-width: 700px;
+    max-height:500px;
+    border-width: 0;
+}
+
+#con{
+    margin: auto;
+    width: 80%;
+}
+
+/* 属性区 */
+#attributeArea {
+    position:absolute;
+    left:72%;
+    top:9%;
+    display: block;
+    width: 250px;
+    min-height:530px;       /* 撑起足够的空间 */
+
+    padding: 10px 0;
+    height: 150px;
+
+    border-style: none;/*ȥ�߿�*/
+
+    overflow: auto;
+    font-family: 'Josefin Sans';
+    font-weight:700;
+    font-size:14px;
+
+    background-color: rgba(255,255,255,0); /* white, opacity */
+}
+
+/* 属性栏位置大小调整 */
+@media only screen and (max-width: 1200px){
+    #attributeArea {
+        left:80%;
+        top:6%;
+        width: 180px;
+        min-height:450px;
+    }
+}
+
+.attributeBox{
+    margin-bottom:17px;
+    margin-left: 10px;  /*为左边的阴影留出空间*/
+}
+
+.lightUp, .lightUpAlways{
+    cursor:pointer;
+    box-shadow:0px 0px 7px 0 rgba(52,73,94,0.9);
+}
+
+.lightUpAlways{
+    cursor:pointer;
+    box-shadow:0px 0px 10px rgba(52,73,94,0.9);
+}
+
+.attributeNameBox{
+    width:auto;
+    padding:9px 10px 7px 15px;
+    background-color:#34495e;
+    color:white;
+    display:inline;
+
+    white-space:nowrap;         /* 设置不自动换行 */
+}
+
+.selectedAlternativeBox{
+    width:auto;
+    padding:8px 15px 6px 10px;
+    background-color:white;
+    color:#34495e;
+    margin-right: 15px;
+    border:1px solid #34495e;
+    display:inline;
+
+    white-space:nowrap;         /* 设置不自动换行 */
+}
+
+#attributeArea::-webkit-scrollbar, #alternativeArea::-webkit-scrollbar {/*滚动条整体样式*/
+    width: 14px;
+    height: 14px;
+
+}
+
+#attributeArea::-webkit-scrollbar-thumb, #alternativeArea::-webkit-scrollbar-thumb {/*滚动条里面小方块*/
+    border-radius: 999px;
+    border: 5px solid transparent;
+
+    height:30px;
+    background-clip: content-box;
+    box-shadow: 0 0 0 5px rgba(52,73,94,0.9) inset;
+
+}
+
+#attributeArea::-webkit-scrollbar-track. #alternativeArea::-webkit-scrollbar-track {/*滚动条里面轨道*/
+    border-radius: 999px;
+    border: 5px solid transparent;
+    box-shadow: 1px 1px 5px rgba(0,0,0,.2) inset;
+}
+
+#attributeArea::-webkit-scrollbar-corner, #alternativeArea::-webkit-scrollbar-corner {
+    background: transparent;
+}
+
+
+/* 备选项区域 */
+#alternativeArea {
+    margin: auto;
+    display: block;
+    width: 80%;
+    max-width: 700px;
+    text-align: center;
+    padding: 15px 0;
+    height: 150px;
+
+    border-style: none;
+
+    overflow: auto;
+    font-family: 'Josefin Sans';
+    font-weight:700;
+    font-size:14px;
+
+    background-color: rgba(255,255,255,0); /* white, opacity */
+}
+
+.altBox {
+    float:left;
+    background: none;
+    color: #34495e;
+    overflow: hidden;
+    -webkit-transition: background-color 0.3s;
+    transition: background-color 0.3s;
+
+    width:auto;
+    height:36px;
+    display: block;
+    margin: 10px;
+    padding: 0px 30px;
+    border: 1.5px solid #34495e;
+
+    vertical-align: middle;
+    position: relative;
+    z-index: 1;
+    -webkit-backface-visibility: hidden;
+    -moz-osx-font-smoothing: grayscale;
+
+    border-radius: 40px;
+}
+
+.altBox > span {
+    display: inline-block;
+    padding: 7px 0;
+    opacity: 0;
+    color: #fff;
+    -webkit-transform: translate3d(0, -10px, 0);
+    transform: translate3d(0, -10px, 0);
+    -webkit-transition: -webkit-transform 0.3s, opacity 0.3s;
+    transition: transform 0.3s, opacity 0.3s;
+    -webkit-transition-timing-function: cubic-bezier(0.75, 0, 0.125, 1);
+    transition-timing-function: cubic-bezier(0.75, 0, 0.125, 1);
+}
+.altBox::before {           /* 原文字内容 */
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    padding: 7px 0;
+    -webkit-transition: -webkit-transform 0.3s, opacity 0.3s;
+    transition: transform 0.3s, opacity 0.3s;
+    -webkit-transition-timing-function: cubic-bezier(0.75, 0, 0.125, 1);
+    transition-timing-function: cubic-bezier(0.75, 0, 0.125, 1);
+}
+
+.altBox:hover{
+    background-color: #3f51b5;
+    border-color: #3f51b5;
+    color:white;
+}
+
+.altBox:focus {
+    outline: none;
+}
+
+.altBox:hover::before {
+    opacity: 0;
+    -webkit-transform: translate3d(0, 100%, 0);
+    transform: translate3d(0, 100%, 0);
+}
+.altBox:hover > span {
+    opacity: 1;
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+}
+.altBox:hover > span:nth-child(1) {
+    -webkit-transition-delay: 0.045s;
+    transition-delay: 0.045s;
+}
+.altBox:hover > span:nth-child(2) {
+    -webkit-transition-delay: 0.09s;
+    transition-delay: 0.09s;
+}
+.altBox:hover > span:nth-child(3) {
+    -webkit-transition-delay: 0.135s;
+    transition-delay: 0.135s;
+}
+.altBox:hover > span:nth-child(4) {
+    -webkit-transition-delay: 0.18s;
+    transition-delay: 0.18s;
+}
+.altBox:hover > span:nth-child(5) {
+    -webkit-transition-delay: 0.225s;
+    transition-delay: 0.225s;
+}
+.altBox:hover > span:nth-child(6) {
+    -webkit-transition-delay: 0.27s;
+    transition-delay: 0.27s;
+}
+.altBox:hover > span:nth-child(7) {
+    -webkit-transition-delay: 0.315s;
+    transition-delay: 0.315s;
+}
+.altBox:hover > span:nth-child(8) {
+    -webkit-transition-delay: 0.36s;
+    transition-delay: 0.36s;
+}
+.altBox:hover > span:nth-child(9) {
+    -webkit-transition-delay: 0.405s;
+    transition-delay: 0.405s;
+}
+.altBox:hover > span:nth-child(10) {
+    -webkit-transition-delay: 0.45s;
+    transition-delay: 0.45s;
+}
+.altBox:hover > span:nth-child(11) {
+    -webkit-transition-delay: 0.495s;
+    transition-delay: 0.495s;
+}
+.altBox:hover > span:nth-child(12) {
+    -webkit-transition-delay: 0.54s;
+    transition-delay: 0.54s;
+}
+
+.selected {     /* 选中后alternative的样式 */
+    background-color: #3f51b5;
+    color:white;
+    float:left;
+
+    overflow: hidden;
+    -webkit-transition: background-color 0.3s;
+    transition: background-color 0.3s;
+
+    width:auto;
+    height:36px;
+    display: block;
+    margin: 10px;
+    padding: 5px 30px 0px;
+    border: 1.5px solid #3f51b5;
+
+    vertical-align: middle;
+    position: relative;
+    z-index: 1;
+    -webkit-backface-visibility: hidden;
+    -moz-osx-font-smoothing: grayscale;
+
+    border-radius: 40px;
+}
+@-webkit-keyframes zoom {
+    from {-webkit-transform: scale(0)}
+    to {-webkit-transform: scale(1)}
+}
+
+@keyframes zoom {
+    from {transform: scale(0.1)}
+    to {transform: scale(1)}
+}
+
+/* The Close Button */
+.close {
+    position: fixed;
+    top: 5%;
+    right: 5%;
+    color: #000;
+    font-size: 60px; /*50px is also OK*/
+    transition: 0.3s;
+
+    font-family: 'Josefin Sans'; /*���岿��ͬdescription��*/
+}
+
+.close:hover,
+.close:focus {
+    color:orangered;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* 100% Image Width on Smaller Screens */
+@media only screen and (max-width: 900px){
+    .modal-content {
+        max-height: 280px;
+    }
+    .photo{
+        float:none;
+    }
+}
+
+@media only screen and (max-width: 1200px){
+    .close{
+        top:1%;
+    }
+    #alternativeArea{
+        width:100%;
+    }
+}
+
+/* Modal Button for Reivse */
+.btn-revise{
+    font-family:'aileronthin','arial'!important;
+    letter-spacing:.6px;
+    font-size:16px;
+    -webkit-font-smoothing:subpixel-antialiased;
+    -webkit-transition:border .25s linear,color .25s linear,background-color .25s linear;
+    transition:border .25s linear,color .25s linear,background-color .25s linear;
+    margin-left:69%;
+    height:40px;
+    padding-left:30px;	/*字的左边距*/
+
+
+    background-color:#e5b51c;
+    color:#fff;
+    border:none;
+    border-radius:0;
+
+    -webkit-animation-name: rubberBand;
+    -webkit-animation-duration: 0.6s;
+    animation-name: rubberBand;
+    animation-duration: 0.6s;
+}
+
+.btn-revise:hover{
+    color:#fff;
+    background-color:#ec971f;
+    border:none;
+}
+
+
+.btn-icon{
+    position:relative;
+    padding-right:69px;	/*这里要增加字和图标的间距相同的距离（原来是39）*/
+    border:0
+}
+
+.icon-revise{
+    background-color:#ec971f;
+    padding:14px 13px;
+    font-size:14px;
+}
+
+.btn-icon i{
+    position:absolute;
+    right:0;
+    top:0;
+    height:100%;
+    margin-left:30px;	/*字和图标的间距*/
+}
+
+/* 缩小窗口时调整按钮位置 */
+@media only screen and (max-width: 900px){
+    .btn-revise {
+        margin-left:62%;
+    }
+
+}
+
+.square{
+    position: absolute;
+    left:26.5%;
+    top:71px;
+    width: 40px;
+    height:40px;
+    cursor:pointer;
+
+    -webkit-transition:all 0.5s;
+    transition:all 0.5s;
+}
+
+.line{
+    position: absolute;
+    left:26.5%;
+    top:126px;
+    width: 40px;
+    height:40px;
+    cursor:pointer;
+
+    -webkit-transition:all 0.5s;
+    transition:all 0.5s;
+}
+
+.rubber{
+    position: absolute;
+    left:26.6%;
+    top:176px;
+    width: 40px;
+    height:40px;
+    cursor:pointer;
+
+    background-image:url(../img/icon/rubber-grey.png);
+    background-size:40px 40px;
+    border-width:0;
+    -webkit-transition:all 0.5s;
+    transition:all 0.5s;
+}
+
+.rubber:hover{
+    background-image:url(../img/icon/rubber-black.png);
+    -webkit-transition:all 0.5s;
+    transition:all 0.5s;
+}
+
+@media only screen and (max-width: 1200px){
+    .square{
+        left:10%;
+    }
+    .line{
+        left:10%;
+    }
+    .rubber{
+        left:10%;
+    }
+}
+
+.startPoint{
+    cursor:pointer;
+    height:5px;
+    position:absolute;
+    width:5px;
+    background:transparent;
+    border:2px solid red;
+    border-radius:5px;
+    overflow:hidden;
+}
+
+.startPoint:hover{
+    cursor:pointer;
+}
+
+.redPoint{
+    height:1px;
+    position:absolute;
+    width:1px;
+    background:#f00;
+    overflow:hidden;
+}
+
+.orangePoint{
+    height:1px;
+    position:absolute;
+    width:1px;
+    background:darkorange;
+    overflow:hidden;
+}

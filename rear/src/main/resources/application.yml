@@ -1,0 +1,18 @@
+spring:
+  mail:
+     host: smtp.qq.com
+     username: 1919739928@qq.com
+     password: zpmlmimtbuvxdadh
+     properties:
+        mail:
+          smtp:
+            auth: true
+            starttls:
+               enables: true
+               required: true
+
+  http:
+  multipart:
+    max-file-size: 10000MB
+    max-request-size: 10000MB
+    enabled: true

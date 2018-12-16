@@ -1,0 +1,194 @@
+.register-container {
+    display: block;
+    padding: 5px;
+    border-radius: 5px;
+
+    width: 500px;
+    height: 520px;      /*470*/
+    position: absolute;
+    top: 115px;         /*140*/
+    left: 50%;
+    margin: 0 0 0 -250px;
+    background-color:rgba(0,0,0,0.35);
+    z-index:0;
+
+    color:#E8E8E8;  /*内部字体颜色*/
+}
+
+.faceID-container {
+    display: block;
+    padding: 5px;
+    border-radius: 5px;
+
+    width: 500px;
+    height: 400px;      /*470*/
+    position: absolute;
+    top: 115px;         /*140*/
+    left: 50%;
+    margin: 0 0 0 -250px;
+    background-color:rgba(0,0,0,0.35);
+    z-index:0;
+
+    color:#E8E8E8;  /*内部字体颜色*/
+}
+
+.register-form{
+    width: 100%;
+    margin: 0 auto;
+    padding: 30px 20px 10px 40px;
+    position: relative;
+    font-size: 15px;
+}
+
+.register-form div span{
+    width:130px;
+    text-align:center;
+    display:inline-block;
+    margin-right: 30px;
+    margin-bottom: 20px;
+}
+
+.register-form div input{
+    width: 240px;
+    height: 20px;
+    line-height: 20px;
+    padding: 8px 10px 8px 10px;
+    border: none;
+    font-size: 16px;
+    color: #222;
+    background-color: rgba(255,255,255,0.5);
+    border-radius: 3px
+}
+
+.register-form div input:focus{
+    border:0.5px solid  #04f;         /*选中时的边框样式*/
+    padding: 7.5px 10px 7.5px 10px;     /*原上下padding减去边框的宽度*/
+}
+
+#register{
+    background: #04f;
+    border-color: #04f;
+    color:white;
+    width: 300px;
+    display: block;
+    height: 46px;
+    line-height: 44px;
+    border-radius: 3px;
+    font-size: 16px;
+    text-align: center;
+    letter-spacing: 8px;
+    transition: background 1s cubic-bezier(.19,1,.22,1);
+    cursor:pointer;
+
+    margin-top: 35px;
+    margin-left: 66px;
+}
+
+#register:hover{
+    background-color: #0224d0;
+    border-color: #0224d0
+}
+
+#registerING{
+    background: #04f;
+    border-color: #04f;
+    color:white;
+    width: 300px;
+    display: block;
+    height: 46px;
+    line-height: 44px;
+    border-radius: 3px;
+    font-size: 16px;
+    text-align: center;
+    letter-spacing: 8px;
+    transition: background 1s cubic-bezier(.19,1,.22,1);
+    cursor:pointer;
+
+    margin-top: 35px;
+    margin-left: 66px;
+}
+
+.radioChoice{
+    max-width:40px;
+}
+
+.radioGroup input{
+    opacity: 0; /*隐藏原有样式*/
+    cursor:pointer;
+}
+
+.workerBox{
+    position: absolute;
+    left:215px;
+    top: 33px;
+    z-index: -1;
+
+    color:white;
+    background-color:rgba(0,0,0,0);
+    font-size:18px;
+}
+
+.bossBox{
+    position: absolute;
+    left:348px;
+    top: 33px;
+    z-index: -1;
+
+    color:white;
+    background-color:rgba(0,0,0,0);
+    font-size:18px;
+}
+
+.login-error-tips3 {	/*注册验证信息提示*/
+    position: absolute;
+    top: 405px;         /*358*/
+    font-size: 14px;
+    color: white;
+    line-height: 20px
+}
+
+.backButton{
+    font-size:20px;
+    margin-left: 410px;
+    cursor:pointer;
+}
+
+.backButton:hover{  /*返回按钮的动画*/
+    color:white;
+
+    -webkit-animation-name: wobble;
+    -webkit-animation-duration: 0.6s;
+    animation-name: wobble;
+    animation-duration: 0.6s;
+}
+
+/*获取验证码*/
+#verification{
+    width:100px;
+}
+
+#getVerification{
+    width:100px;
+    margin-left: 35px;
+
+}
+
+#hasSent{
+    color: #04f;
+    font-style: normal;
+    margin-left: 35px;
+}
+
+
+
+/*登录的faceID*/
+#facePic{
+    width: 22px;
+    height:20px;            /*22*/
+    background-image:url(../../img/icon/mask.png);      /*face.png*/
+    background-size:22px 20px;          /*22 22*/
+    border-width:0;
+
+    margin-top:0px;     /*-1*/
+    margin-right: 1px;
+}

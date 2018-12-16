@@ -1,0 +1,254 @@
+
+/* Statistics */
+
+/* 收起展开Statistics */
+.statisticsLabel{
+    position: relative;
+    left: 50%;
+    padding-left: 10px;
+    margin: 20px 0 20px -450px;
+
+    width: 200px;
+    color:#34495e;
+    font-size: 20px;
+    font-weight: bold;
+    font-family: SentyBrush;
+    letter-spacing: 1px;
+}
+
+#showStatistics:hover{
+    cursor: pointer;
+    -webkit-animation-name: rubberBand;
+    -webkit-animation-duration: 0.6s;
+    animation-name: rubberBand;
+    animation-duration: 0.6s;
+}
+
+#statistics{
+    position: relative;
+    left: 50%;
+    margin: 40px 0 20px -400px;
+}
+
+/* Score */
+.bossNumPart{
+     position: relative;
+     width:250px;
+     height:250px;
+     padding-top:50px;
+
+     border-radius: 15px;    /* 屏蔽四个角 */
+     /* 四角样式 */
+     background: linear-gradient(to left, #34495e, #34495e) left top no-repeat,
+     linear-gradient(to bottom, #34495e, #34495e) left top no-repeat,
+     linear-gradient(to left, #34495e, #34495e) right top no-repeat,
+     linear-gradient(to bottom, #34495e, #34495e) right top no-repeat,
+     linear-gradient(to left, #34495e, #34495e) left bottom no-repeat,
+     linear-gradient(to bottom, #34495e, #34495e) left bottom no-repeat,
+     linear-gradient(to left, #34495e, #34495e) right bottom no-repeat,
+     linear-gradient(to left, #34495e, #34495e) right bottom no-repeat;
+     background-size: 2px 30px, 30px 2px, 2px 30px, 30px 2px;
+
+     font-family: SentyBrush;
+
+     transition-duration: .1s;
+     -moz-transition-duration: .1; /* Firefox 4 */
+     -webkit-transition-duration: .1s; /* Safari 和 Chrome */
+     -o-transition-duration: .1s; /* Opera */
+ }
+
+
+.taskNumPart, .taskInfoPart,.workerNumPart{
+    position: relative;
+    width:350px;
+    height:350px;
+    padding-top:95px;
+
+    border-radius: 15px;    /* 屏蔽四个角 */
+    /* 四角样式 */
+    background: linear-gradient(to left, #34495e, #34495e) left top no-repeat,
+    linear-gradient(to bottom, #34495e, #34495e) left top no-repeat,
+    linear-gradient(to left, #34495e, #34495e) right top no-repeat,
+    linear-gradient(to bottom, #34495e, #34495e) right top no-repeat,
+    linear-gradient(to left, #34495e, #34495e) left bottom no-repeat,
+    linear-gradient(to bottom, #34495e, #34495e) left bottom no-repeat,
+    linear-gradient(to left, #34495e, #34495e) right bottom no-repeat,
+    linear-gradient(to left, #34495e, #34495e) right bottom no-repeat;
+    background-size: 2px 30px, 30px 2px, 2px 30px, 30px 2px;
+
+    font-family: SentyBrush;
+
+    transition-duration: .1s;
+    -moz-transition-duration: .1; /* Firefox 4 */
+    -webkit-transition-duration: .1s; /* Safari 和 Chrome */
+    -o-transition-duration: .1s; /* Opera */
+}
+
+.bossNumPart:hover{
+    transform: scale(1.1);
+    -ms-transform:scale(1.1);	/* IE 9 */
+    -moz-transform:scale(1.1); 	/* Firefox */
+    -webkit-transform:scale(1.1);/* Safari 和 Chrome */
+    -o-transform:scale(1.1); 	/* Opera */
+}
+
+.workerNumPart:hover, .taskNumPart:hover, .taskInfoPart:hover{
+    transform: scale(0.9);
+    -ms-transform:scale(0.9);	/* IE 9 */
+    -moz-transform:scale(0.9); 	/* Firefox */
+    -webkit-transform:scale(0.9);/* Safari 和 Chrome */
+    -o-transform:scale(0.9); 	/* Opera */
+}
+
+.workerNum, .bossNum{
+    width:180px;
+    margin:0 auto;
+
+    text-align: center;
+    font-size:70px;
+    font-family: "Josefin Sans";
+}
+
+.taskNum{
+      width:180px;
+      margin:0 auto;
+
+      text-align: center;
+      font-size:80px;
+      font-family: "Josefin Sans";
+}
+
+.taskInfo{
+    width:250px;
+    margin:0 auto;
+
+    text-align: center;
+    font-size:80px;
+    font-family: "Josefin Sans";
+}
+
+.workerNumLabel, .bossNumLabel, .taskNumLabel, .taskInfoLabel{
+    position:absolute;
+    bottom:0;
+    width: inherit;     /* 保证父节点变形后子节点长度跟着变 */
+    text-align: center;
+
+    background-color: #34495e;
+    border-bottom-left-radius: 12px;
+    border-bottom-right-radius: 12px;
+
+    color:white;
+    font-size: 30px;
+}
+
+#taskInfoLabel{
+    font-size:20px;
+    line-height: 55px;      /* 保证和其它label一样高 */
+}
+
+
+/* 几个方块的位置 */
+#bossNumPart{
+    position: relative;
+    top: 100px;
+    left:110px;
+}
+
+#taskInfoPart {
+    position: relative;
+    top: 140px;
+    left:10px;
+}
+
+#workerNumPart{
+    position: relative;
+    top: -210px;
+    left:400px;
+}
+
+#taskNumPart{
+    position:absolute;
+    left:400px;
+    top:0px;
+}
+
+
+/* hover一道光划过的特效 */
+ .bossNumPart:before, .taskInfoPart:before{
+    content: ""; position: absolute; width:200px; height: 100%; top: 0; left: -150px; overflow: hidden;
+    background: -moz-linear-gradient(left, rgba(255,255,255,0)0, rgba(255,255,255,.2)50%, rgba(255,255,255,0)100%);
+    background: -webkit-gradient(linear, left top, right top, color-stop(0%, rgba(255,255,255,0)), color-stop(50%, rgba(255,255,255,.2)), color-stop(100%, rgba(255,255,255,0)));
+    background: -webkit-linear-gradient(left, rgba(255,255,255,0)0, rgba(255,255,255,.2)50%, rgba(255,255,255,0)100%);
+    background: -o-linear-gradient(left, rgba(255,255,255,0)0, rgba(255,255,255,.2)50%, rgba(255,255,255,0)100%);
+    -webkit-transform: skewX(-25deg);
+    -moz-transform: skewX(-25deg);
+    z-index:-1;  /* 保证置于顶层 */
+}
+
+.workerNumPart:before, .taskNumPart:before{
+      content: ""; position: absolute; width:200px; height: 100%; top: 0; left: 10px; overflow: hidden;
+      background: -moz-linear-gradient(left, rgba(255,255,255,0)0, rgba(255,255,255,.2)50%, rgba(255,255,255,0)100%);
+      background: -webkit-gradient(linear, left top, right top, color-stop(0%, rgba(255,255,255,0)), color-stop(50%, rgba(255,255,255,.2)), color-stop(100%, rgba(255,255,255,0)));
+      background: -webkit-linear-gradient(left, rgba(255,255,255,0)0, rgba(255,255,255,.2)50%, rgba(255,255,255,0)100%);
+      background: -o-linear-gradient(left, rgba(255,255,255,0)0, rgba(255,255,255,.2)50%, rgba(255,255,255,0)100%);
+      -webkit-transform: skewX(-25deg);
+      -moz-transform: skewX(-25deg);
+      z-index:-1;  /* 保证置于顶层 */
+}
+
+/* Score hover一道光划过的特效 */
+.workerNumPart:hover:before, .bossNumPart:hover:before, .taskNumPart:hover:before, .taskInfoPart:hover:before{
+    left: 150%;
+    z-index:1;  /* 保证置于顶层 */
+}
+
+.bossNumPart:hover:before{
+    transition: left 1s ease 0s;
+}
+
+.workerNumPart:hover:before{
+    transition: left 1.3s ease 0s;
+}
+
+.taskNumPart:hover:before, .taskInfoPart:hover:before{
+    transition: left 1.5s ease 0s;
+}
+
+
+
+/* Charts */
+
+/* 收起展开Charts */
+.chartsLabel{
+    position: relative;
+    left: 50%;
+    padding-left: 10px;
+    padding-top: 80px;      /* padding才能占据一定的高度，不被navbar挡住 */
+    margin: 0px 0 0px -450px;
+
+    width: 200px;
+    color:#34495e;
+    font-size: 20px;
+    font-weight: bold;
+    font-family: SentyBrush;
+    letter-spacing: 1px;
+}
+
+#showCharts:hover{
+    cursor: pointer;
+    -webkit-animation-name: rubberBand;
+    -webkit-animation-duration: 0.6s;
+    animation-name: rubberBand;
+    animation-duration: 0.6s;
+}
+
+#charts{
+    position: relative;
+    left: 50%;
+    margin: 20px 0 20px -400px;
+}
+
+#loginInfoLastWeek, #loginInfoLastMonth,#accuracy,#efficiency,#activeness{
+    width:800px;
+    height:420px;
+}

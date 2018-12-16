@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>标注</title>
+  <meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
+
+  <script src="js/jquery.min.js"></script>
+  <script src="js/jquery.Jcrop.js"></script>
+  <script type="text/javascript">
+      jQuery(function($){
+
+          // Create variables (in this scope) to hold the API and image size
+          var jcrop_api,
+              boundx,
+              boundy,
+
+              // Grab some information about the preview pane
+              $preview = $('#preview-pane'),
+              $pcnt = $('#preview-pane .preview-container'),
+              $pimg = $('#preview-pane .preview-container img'),
+
+              xsize = $pcnt.width(),
+              ysize = $pcnt.height();
+
+          console.log('init',[xsize,ysize]);
+          $('#target').Jcrop({
+              onChange: updatePreview,
+              onSelect: updatePreview,
+              aspectRatio: xsize / ysize
+          },function(){
+              // Use the API to get the real image size
+              var bounds = this.getBounds();
+              boundx = bounds[0];
+              boundy = bounds[1];
+              // Store the API in the jcrop_api variable
+              jcrop_api = this;
+
+              // Move the preview into the jcrop container for css positioning
+              $preview.appendTo(jcrop_api.ui.holder);
+          });
+          //取消jcrop
+          $('#line').click(function(e) {
+              // Destroy Jcrop widget, restore original state
+              jcrop_api.destroy();
+              // Update the interface to reflect un-attached state
+              return false;
+          });
+
+          function updatePreview(c)
+          {
+              if (parseInt(c.w) > 0)
+              {
+                  var rx = xsize / c.w;
+                  var ry = ysize / c.h;
+
+                  $pimg.css({
+                      width: Math.round(rx * boundx) + 'px',
+                      height: Math.round(ry * boundy) + 'px',
+                      marginLeft: '-' + Math.round(rx * c.x) + 'px',
+                      marginTop: '-' + Math.round(ry * c.y) + 'px'
+                  });
+              }
+          };
+
+      });
+
+
+  </script>
+
+  <script type="text/javascript">
+      <!--
+      var dot=new Array();
+      document.onmousedown =function(a)
+      {
+          //若div存在，则删除
+          if(document.getElementById('line_div')){
+              var clearDiv=document.getElementById("line_div");
+              clearDiv.parentNode.removeChild(clearDiv);
+          }
+          //按下时创建一个事件
+          if(!a) a=window.event;
+          //获取x轴、y轴坐标
+          var x=a.clientX;
+          var y=a.clientY;
+          //当数组长度大于等于4时，清空数组
+          if(dot.length>=4) dot.splice(0,4);
+          //将x、y添加到数组中,数组中保存了两组坐标值，相当于页面上的A(x1,y1)、B(x2,y2)两点
+          dot.push(x,y);
+          //当数组长度为4时，画线。
+          if(dot.length==4){
+              //计算div的长和宽
+              var width=Math.abs(dot[0]-dot[2]);
+              var height=Math.abs(dot[1]-dot[3]);
+              //在页面上定位div左上角的具体位置
+              var left=dot[0]-dot[2]<0?dot[0]:dot[2];
+              var top=dot[1]-dot[3]<0?dot[1]:dot[3];
+              //创建div
+              var div=document.createElement("div");
+              div.innerHTML=' <div id="line_div" style="width:'+width+'px;height:'+height+'px;position:absolute;visibility:visible;left:'+left+'px;top:'+top+'px;border-left:1px solid #cdcdcd;border-top:1px solid #cdcdcd;"></div>';
+              document.body.appendChild(div);
+          }
+      }
+      -->
+  </script>
+
+  <script type="text/javascript">
+      /**
+         画点
+       */
+      function makedot(x, y){
+          pointDiv = "<div style='height:1px;position:absolute;left:" + x +
+              "px;top:" + y + "px;width:1px;background:#f00;overflow:hidden'></div>";
+          return pointDiv;
+      }
+      /**
+        根据两点坐标画直线。
+       */
+
+      function line(x1,y1,x2,y2){
+          var slope; //斜率
+          var direction;//坐标运动方向
+          var tx = x2 - x1;
+          var ty = y2 - y1;
+          if(tx == 0 && ty == 0)return;
+          var points = "";
+          var axis;//坐标轴上的坐标
+          if(Math.abs(tx) >= Math.abs(ty)){//在x轴上移动
+              direction = tx > 0 ? 1 : -1;
+              tx = Math.abs(tx);
+              slope = ty / tx;
+              axis = x1;
+              for(i = 0; i < tx; i ++){
+                  points += makedot(axis, y1 + i * slope);
+                  axis += direction;
+              }
+
+          }else{//在y轴上移动
+              direction = ty > 0 ? 1 : -1;
+              ty = Math.abs(ty);
+              slope = tx / ty;
+              axis = y1;
+              for(i = 0; i < ty; i ++){
+                  points += makedot(x1 + i * slope, axis);
+                  axis += direction;
+              }
+          }
+          var container = document.getElementById("container");
+          container.innerHTML += points;
+      }
+      var oldPoint = null;
+      //获取鼠标位置
+      function mousePosition(ev){
+          ev = ev || window.event;
+          if(ev.pageX || ev.pageY){
+              return {x:ev.pageX, y:ev.pageY};
+          }
+          var doc = document.documentElement, body = document.body;
+          var pageX = event.clientX + (doc && doc.scrollLeft || body && body.scrollLeft || 0) - (doc && doc.clientLeft || body && body.clientLeft || 0);
+          var pageY = event.clientY + (doc && doc.scrollTop || body && body.scrollTop || 0) - (doc && doc.clientTop || body && body.clientTop || 0);
+          return {x:pageX, y:pageY};
+      }
+
+      function recordPoint(ev){
+
+          var point = mousePosition(ev);
+          if(oldPoint != null){
+              line(oldPoint.x, oldPoint.y, point.x, point.y);
+          }
+          oldPoint = point;
+      }
+
+      function startLine(){
+           '#target'.addEventListener("click",function(ev){
+               recordPoint(ev);
+           })
+
+      }
+
+      function startRec(){
+
+      }
+  </script>
+
+  <link rel="stylesheet" href="css/main.css" type="text/css" />
+  <link rel="stylesheet" href="css/demos.css" type="text/css" />
+  <link rel="stylesheet" href="css/jquery.Jcrop.css" type="text/css" />
+  <style type="text/css">
+
+    /* Apply these styles only when #preview-pane has
+       been placed within the Jcrop widget */
+    .jcrop-holder #preview-pane {
+      display: block;
+      position: absolute;
+      z-index: 2000;
+      top: 10px;
+      right: -280px;
+      padding: 6px;
+      border: 1px rgba(0,0,0,.4) solid;
+      background-color: white;
+
+      -webkit-border-radius: 6px;
+      -moz-border-radius: 6px;
+      border-radius: 6px;
+
+      -webkit-box-shadow: 1px 1px 5px 2px rgba(0, 0, 0, 0.2);
+      -moz-box-shadow: 1px 1px 5px 2px rgba(0, 0, 0, 0.2);
+      box-shadow: 1px 1px 5px 2px rgba(0, 0, 0, 0.2);
+    }
+
+    /* The Javascript code will set the aspect ratio of the crop
+       area based on the size of the thumbnail preview,
+       specified here */
+    #preview-pane .preview-container {
+      width: 250px;
+      height: 170px;
+      overflow: hidden;
+    }
+
+  </style>
+
+</head>
+<body>
+
+<div class="container">
+  <div class="row">
+    <div class="span12">
+
+
+
+
+        <img src="img/picture/fries.jpg" id="target" alt="标注图片" width="640" height="640" onclick="recordPoint(event)"/>
+
+        <div id="preview-pane">
+          <div class="preview-container">
+            <img src="img/picture/fries.jpg" class="jcrop-preview" alt="Preview" />
+          </div>
+        </div>
+        <img src="img/icon/rec.png" id="rec" width="40" height="42" onclick="startRec()">
+        <img src="img/icon/line.png" id="line" width="40" height="42" onclick="startLine()">
+        <div class="clearfix"></div>
+
+
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
+

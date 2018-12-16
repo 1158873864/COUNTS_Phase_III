@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Getting Started: Serving Web Content</title>
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <script>
+
+
+        /**
+         * Upload the file sending it via Ajax at the Spring Boot server.
+         */
+        function uploadFile() {
+            var fd=new FormData($("#upload-file-form")[0]);
+            $.ajax({
+                url: "http://localhost:8080//upload",
+                type: "POST",
+                data: fd,
+                enctype: 'multipart/form-data',
+                processData: false,
+                contentType: false,
+                cache: false,
+                success: function () {
+                    alert("1");
+                    alert(data);
+                    // Handle upload success
+                    // ...
+                },
+                error: function (xhr) {
+                    alert(xhr.responseText);
+                    // Handle upload error
+                    // ...
+                }
+            });
+        }
+    </script>
+</head>
+<body>
+<form id="upload-file-form">
+    <label for="upload-file-input">Upload your file:</label>
+    <input id="name" type="text"/>
+    <input id="upload-file-input" type="file" name="uploadfile" accept="*" />
+    <button id="releaseButton" onclick="uploadFile()">发布任务</button>
+
+</form>

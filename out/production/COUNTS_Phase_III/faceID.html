@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>face++</title>
+    <style>
+        video,canvas{
+            border:1px solid gray;
+            width:400px;
+            height:400px;
+            border-radius:50%;
+        }
+    </style>
+</head>
+<body>
+<video autoplay style="position: absolute;left: 1%"></video>
+<canvas id="myCanvas" style="position: absolute;left: 30%;"></canvas>
+<button id="capture" style="position: absolute;left: 30%;top: 55%">拍照</button>
+<div id="attr" style="position: absolute;right: 200px">
+    性别：<input type="text" id="sex">
+    <br><br><br><br><br><br>
+    年龄：<input type="text" id="age">
+    <br><br><br><br><br><br>
+    微笑程度：<input type="text" id="smile">
+    <br><br><br><br><br><br>
+    开心程度：<input type="text" id="emotion">
+    <br><br>
+</div>
+
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script type="text/javascript">
+
+    function canvasToImage(canvas) {
+        var image = new Image();
+        image.src = canvas.toDataURL("image/png");
+        return image;
+    }
+    function getImageBase64(img, ext) {
+        var canva = document.createElement("canvas");   //创建canvas DOM元素，并设置其宽高和图片一样
+        canva.width = img.width;
+        canva.height = img.height;
+        var ctx = canva.getContext("2d");
+        ctx.drawImage(img, 0, 0, img.width, img.height); //使用画布画图
+        var dataURL = canva.toDataURL("image/" + ext);  //返回的是一串Base64编码的URL并指定格式
+        canva = null; //释放
+        return dataURL;
+    }
+
+    function hasUserMedia(){//判断是否支持调用设备api，因为浏览器不同所以判断方式不同哦
+        return !!(navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia);
+    }
+    if(hasUserMedia()){
+        //alert(navigator.mozGetUserMedia)
+        navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia;
+        var video=document.querySelector("video");
+        var canvas=document.querySelector("canvas");
+        var streaming = false;
+        navigator.getUserMedia({
+            video:true,//开启视频
+            audio:false//先关闭音频，因为会有回响，以后两台电脑通信不会有响声
+        },function(stream){//将视频流交给video
+            video.src=window.URL.createObjectURL(stream);
+            streaming = true;
+        },function(err){
+            console.log("capturing",err);
+        });
+        document.querySelector("#capture").addEventListener("click",function(event){
+            if(streaming){
+                //alert(video.clientHeight)
+                //canvas.width = video.clientWidth;
+                //canvas.height= video.clientHeight;
+                var face_token="";
+                canvas.width = 800;
+                canvas.height = 800;
+                var context = canvas.getContext('2d');
+
+                context.drawImage(video,20,20);
+                //var dataUrl;
+                var image=canvasToImage(canvas);
+                /*image.onload = function() { //image.onload是等待图片加载完毕，等待图片加载完毕之后，才能对图片进行操作
+                    dataUrl=getImageBase64(image,"png");
+                    alert(dataUrl);
+
+
+
+                }*/
+
+                var imgSrc=image.src.replace("data:image/png;base64,","");
+                var username="";
+                $.ajax(
+                    {
+                        url: "https://api-cn.faceplusplus.com/facepp/v3/search",
+                        type: 'POST',
+                        data: {
+                            api_key:"aHpzPgyzDOlEYVYuJ_VsQpxWsvxJOikm",
+                            api_secret:"gqZsmpof97Vws-qgn6MRAO3mltrLm8Az",
+                            image_base64:imgSrc,
+                            outer_id:"set",
+
+                        },
+                        dataType: 'JSON',
+                        async:false,
+                        success: function (data) {
+                            //alert(username=data.results[0].user_id);
+                            alert(data.results[0].confidence);
+                            if(data.results[0].confidence>85){
+                                 username=data.results[0].user_id;
+                            }
+                            else{
+                                alert("未检测到已注册人脸，请进行注册");
+                            }
+                        },
+                        error: function (xhr) {
+                            alert('动态页有问题噶！\n\n' + xhr.responseText);
+                        },
+                        traditional: true,
+                    }
+                )
+
+            }
+        })
+    }else{
+        alert("浏览器暂不支持");
+    }
+
+
+</script>
+
+</body>
+</html>

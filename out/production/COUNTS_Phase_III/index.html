@@ -1,0 +1,481 @@
+﻿<!doctype html>
+<!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8 oldie" lang="en"> <![endif]-->
+<!--[if IE 9]>    <html class="no-js ie9" lang="en"> <![endif]-->
+<!--[if gt IE 9]><!--> <html> <!--<![endif]-->
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
+    <!--<script src="http://code.jquery.com/jquery-latest.js"></script>-->
+    <title>COUNTS – a newborn site for crowdsourcing tags</title>
+
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+ 
+    <!-- Font -->
+    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Lato:100,300,400,700,900,100italic,300italic,400italic,700italic,900italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Arvo:400,700' rel='stylesheet' type='text/css'>
+    <link href="https://fonts.googleapis.com/css?family=Crimson+Text:400,700,700i|Josefin+Sans:700" rel="stylesheet">
+
+    <!-- CSS-->
+    <link href="css/general.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/tagPhoto.css" rel="stylesheet">
+    <link href="css/paginationForPicOnly.css" rel="stylesheet">
+    <link href="css/paginationForMyTask.css" rel="stylesheet">
+    <link href="css/paginationForAllTask.css" rel="stylesheet">
+    <link href="css/notificationBox.css" rel="stylesheet">
+
+    <!-- 分类菜单-->
+    <link href="css/category.css"  rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300,400,600&subset=latin,latin-ext' rel='stylesheet'>
+
+    <!-- 动画干货 -->
+    <link href="css/animate.css" rel="stylesheet">
+	
+    <!-- Modernizr /-->
+    <script src="js/modernizr-2.6.2.min.js"></script>
+
+    <!--获取当前信息-->
+    <script src="js/getInformation.js"></script>
+    <!-- Jcrop /-->
+    <link rel="stylesheet" href="css/jquery.Jcrop.css" type="text/css" />
+
+</head>
+
+
+<body id="home">
+
+    <!-- Preloader（魔方加载） -->
+    <div id="preloader">
+        <div id="status"></div>
+    </div>
+	
+    <!-- FullScreen首页 -->
+    <div class="intro-header">
+        <div class="col-xs-12 text-center abcen1">
+            <h1 class="h1_home wow fadeIn" data-wow-delay="0.4s">COUNTS</h1>
+            <h3 class="h3_home wow fadeIn" data-wow-delay="0.6s">Crowdsourcing Tags</h3>
+            <ul class="list-inline intro-social-buttons">
+                <li><a href="" class="btn  btn-lg mybutton_cyano wow fadeIn" data-wow-delay="0.8s"><span class="network-name">♥❤</span></a>
+                    </li>
+                    <li id="download" ><a href="#downloadlink" class="btn  btn-lg mybutton_standard wow swing wow fadeIn" data-wow-delay="1.2s" onclick="informNotCompleted()"><span class="network-name">Free Download</span></a>
+                    </li>
+            </ul>
+        </div>    
+        <!-- 下拉箭头 -->
+        <div class="col-xs-12 text-center abcen wow rubberBand" data-wow-delay="1.5s">
+            <div class="button_down "> 
+            <a id="down" class="imgcircle wow bounceInUp" data-wow-delay="1.5s" data-wow-duration="1.5s"  href="#start"> <img class="img_scroll" src="img/icon/circle.png" alt=""> </a>
+            </div>
+        </div>
+    </div>
+	
+    <!-- NavBar-->
+    <nav class="navbar-default" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#home">COUNTS</a>
+            </div>
+
+            <div class="collapse navbar-collapse navbar-right navbar-ex1-collapse">
+                <ul id="nav" class="nav navbar-nav">	<!--id nav用于导航 -->			
+                    <li id="changeableNav" class="menuItem active"><a id="changeableItem" href="#start" style="float:left;display:inline;">Let's tag</a></li>
+                    <li class="menuItem"><a href="myworks.html#myworks">My works</a></li>
+                    <li class="menuItem"><a href="#contact">Contact</a></li>
+                    <li class="menuItem dropdown"><a href="workerAccount.html#profile">My Account</a>
+			            <div class="dropdown-content">
+                            <a href="workerAccount.html#profile">Profile</a>
+                            <a href="workerAccount.html#chartsLabel">Charts</a>
+                            <a href="workerAccount.html#statisticsLabel" style="border-bottom: 1px solid lightgrey">Statistics</a>
+                            <a href="javascript:void(0)" onclick="getInvitationCode()">Invitation code</a>
+                            <a id="loginItem" href="login.html">Login</a>
+                            <a id="logoutItem" href="javascript:void(0)" onclick="logout()">Logout</a>
+                            <a href="javascript:void(0)" onclick="toRegister()">Sign up</a>
+                        </div>
+		            </li>
+                        
+                </ul>
+            </div>	   
+        </div>
+    </nav>
+
+    <!-- tagPhoto -->
+    <div id="tagPhoto" class="content-section-b" style="border-top: 0"  >
+
+        <!-- 预先创建元素，使他能够被js文档初始化为smoothscroll，但是会占用一定空间。为了不显示把display设为none -->
+        <!-- ***注意下面的引号为双引号，并且/前不需要转义字符！ -->
+        <a id="temptItem" href="javascript:void(0)" style="color:#1abc9c;float:left;display:inline; padding-left: 0;display:none" onclick="toTagPhoto()"><span style="color:#34495e"> / </span>photo</a>
+
+        <!-- category : jQuery & JS-->
+        <script src="js/jquery.min.js"></script>
+        <script type="text/javascript" src="js/category.js"></script>	<!--在文末引用会出错，why-->
+
+        <!-- 任务 -->
+
+        <!--标签选项My task-->
+        <div id="tabsForMyTask" class="tabs"><span id="myTaskTabActive">My task</span><span id="allTaskTabNotActive" onclick="toAddTask()">Add task</span></div>
+        <!--标签选项Add task-->
+        <div id="tabsForAllTask" class="tabs" style="display: none"><span id="myTaskTabNotActive" onclick="toMyTask()">My task</span><span id="allTaskTabActive">Add task</span></div>
+
+        <div id="toolsForMyTask" class="tools">
+
+            <!--删除任务按钮-->
+            <span id="removeTaskButton">Remove<i class="fa fa-minus-square removeTaskIcon" onclick="removeTask()"></i></span>
+
+            <!--结束删除按钮-->
+            <span id="finishButton" style="display:none">Finish<i class="fa fa-circle-o finishIcon" onclick="finishRemove()"></i></span>
+
+            <!--搜索按钮,因为float：right,所以把应该出现在右边的search图标放在前面-->
+            <!--图标放在span里才有动画效果-->
+            <span class="searchTaskIcon"><i  class="fa fa-search"></i></span><input id="searchMyTask" type="text" placeholder="Search" onpropertychange="searchFuzzilyMyTask(this)" oninput="searchFuzzilyMyTask(this)">
+        </div>
+
+        <div id="toolsForAllTask" class="tools" style="display: none">
+
+            <!-- 分类搜索下拉菜单 -->
+            <section class="dropdownMenu">
+                <div id="category" class="dropdownBox" tabindex="1">
+                    <span>Category</span><i class="fa fa-th-large CategoryIcon"></i>
+                    <ul id="dropdownItems" class="dropdown">
+                        <li><a href="#"><i class="fa fa-check"></i>All</a></li>
+                        <li id="recommendItem"><a href="#"><i class=""></i>recommend</a></li>
+                        <li><a href="#"><i class=""></i>Nature</a></li>
+                        <li><a href="#"><i class=""></i>Food</a></li>
+                        <li><a href="#"><i class=""></i>Human</a></li>
+                        <li><a href="#"><i class=""></i>Animal</a></li>
+                        <li><a href="#"><i class=""></i>Cartoon</a></li>
+                        <li><a href="#"><i class=""></i>Other</a></li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- 查找按钮 -->
+            <span class="searchTaskIcon"><i  class="fa fa-search"></i></span><input id="searchAllTask" type="text" placeholder="Search" onpropertychange="searchFuzzilyAllTask(this)" oninput="searchFuzzilyAllTask(this)">
+
+        </div>
+
+            <div id="myTaskList" class="taskList">
+
+                <div id="noTaskAvailable" class="noTaskAvailable">暂无任务,请前往"Add Task"页面添加任务!</div>
+
+                <div id="noTaskSearched" class="noTaskAvailable" style="display: none">没有符合条件的搜索结果!</div>
+
+                <!-- 分页 -->
+                <div class="counter counterForMyTask" ></div>
+                <button class=" paginateForMyTask  left"><i></i><i></i></button>
+                <button class=" paginateForMyTask  right"><i></i><i></i></button>
+
+            </div>
+
+
+        <div id="allTaskList" class="taskList" style="display: none">
+
+
+            <div id="noTaskAvailable2" class="noTaskAvailable">暂无任务!</div>
+
+            <div id="noTaskSearched2" class="noTaskAvailable" style="display: none">没有符合条件的搜索结果!</div>
+
+
+            <!-- 分页 -->
+            <div class="counter counterForAllTask" ></div>
+            <button class="paginateForAllTask left"><i></i><i></i></button>
+            <button class="paginateForAllTask right"><i></i><i></i></button>
+
+        </div>
+
+        <!-- 每个任务右上角的删除按钮 -->
+        <div id="coverForDelete" class="deleteMe" style="display:none" ><span class="fa fa-times-circle" onclick="readyToDelete(this)"></span></div>
+
+        <!-- 每个任务右上角的删除按钮-->
+        <div id="coverForRevert" class="revertMe" style="display:none" ><span class="fa fa-undo revertIcon" onclick="revertDeletion(this)"></span></div>
+
+        <!-- 相册 -->
+        <div id="album" class="album" style="display: none">
+
+            <!--任务/相册的标题-->
+            <div id="watermarkForAlbumTitle">
+                <h2 id="albumTitle" class="page-title"></h2>
+                <div id="marker" class="marker"></div>
+
+                <!--任务信息-->
+                <div id="taskInfo">
+                    <span id="infoButton" class="fa fa-info-circle" onmouseover="showTaskInfo()" onmouseout="hideTaskInfo()"></span>
+                    <span id="detailInfo" style="display: none">
+                        <span>单张积分:<i id="scorePerPic">0</i></span>
+                        <span>剩余时间:<i id="leftTime">0</i>天</span>
+                    </span>
+                </div>
+
+            </div>
+
+            <div id="toolsForAlbum" class="tools">
+                <!--返回我的任务界面按钮-->
+                <span id="backToTaskListButton">Back<i id="back" class="fa fa-sign-out backToTaskListIcon" onclick="backToTaskList()"></i></span>
+
+                <!--删除当前任务按钮-->
+                <span id="deleteTaskButton" onclick="deleteTaskInView(document.getElementById('albumTitle').innerHTML)" style="display: none">Delete<i class="fa fa-times-circle deleteTaskIcon"></i></span>
+
+                <!--添加当前任务按钮-->
+                <span id="addTaskButton" onclick="addTask()" style="display: none">Add<i class="fa fa-plus-square addTaskIcon"></i></span>
+
+                <!--提交测试集按钮-->
+                <span id="submitButton" onclick="submitTest()" style="display: none">Submit<i class="fa fa-bug submitIcon"></i></span>
+
+            </div>
+
+            <!-- 测试集提示 -->
+            <div id="testSetPrompt" style="display: none"><span style="color:red">*</span>为了保证标注的准确性，您需要首先完成下列测试集的标注</div>
+
+            <!-- 分页 -->
+            <div class="counter counterForAlbum"></div>
+            <button class="paginate left"><i></i><i></i></button>
+            <button class="paginate right"><i></i><i></i></button>
+
+	    </div>
+    </div>
+
+
+    <!-- Let's tag --><!-- 因为磁力导航栏的问题先防在下面 -->
+    <div id="start" class="content-section-b" style="border-top: 0;position:relative">
+        <div class="container">
+
+            <div class="col-md-6 col-md-offset-3 text-center wrap_title">
+                <h2>Let's tag!</h2>
+                <p class="lead" style="margin-top:0">Read the tips and choose a category to start your work</p>
+            </div>
+
+            <div class="row">
+
+                <div class="col-sm-4 wow fadeInDown text-center">
+                    <a href="javascript:void(0)"><img class="rotate" src="img/icon/search.svg" alt="Generic placeholder image"  onclick="informNotCompleted()"></a>
+                    <h3>Introduction</h3>
+                    <p class="lead">What is Crowdsourcing Tag?</p>
+                    <!--<p><a class="btn btn-embossed btn-primary view" role="button">View Details</a></p>-->
+                </div><!-- /.col-lg-4 -->
+
+                <div class="col-sm-4 wow fadeInDown text-center">
+                    <!-- 空链接防止跳转或刷新  onclick="getAllImages()"-->
+                    <a id="photo" href="javascript:void(0)"><img  class="rotate" src="img/icon/picture.svg" alt="Generic placeholder image"></a>
+                    <h3>Photo</h3>
+                    <p class="lead">I want tagging photos!</p>
+                </div><!-- /.col-lg-4 -->
+
+                <div class="col-sm-4 wow fadeInDown text-center">
+                    <a href="javascript:void(0)"><img  class="rotate" src="img/icon/text.svg" alt="Generic placeholder image" width="100" height="100"  onclick="informNotCompleted()"></a>
+                    <h3>Text</h3>
+                    <p class="lead">What you need is just to be patient...</p>
+                </div><!-- /.col-lg-4 -->
+
+            </div><!-- /.row -->
+
+            <div class="row tworow">
+
+                <div class="col-sm-4  wow fadeInDown text-center">
+                    <a href="javascript:void(0)"><img class="rotate" src="img/icon/mic.svg" alt="Generic placeholder image"  onclick="informNotCompleted()"></a>
+                    <h3>Audio</h3>
+                    <p class="lead">In this part, good hearing is demanding. </p>
+                </div><!-- /.col-lg-4 -->
+
+                <div class="col-sm-4 wow fadeInDown text-center">
+                    <a href="javascript:void(0)"><img  class="rotate" src="img/icon/video.svg" alt="Generic placeholder image" width="101" height="101"  onclick="informNotCompleted()"></a>
+                    <h3>Video</h3>
+                    <p class="lead">An eagle-eye will benefit you a lot! </p>
+                </div><!-- /.col-lg-4 -->
+
+                <div class="col-sm-4 wow fadeInDown text-center">
+                    <a href="javascript:void(0)"><img  class="rotate" src="img/icon/bulb.svg" alt="Generic placeholder image"  onclick="informNotCompleted()"></a>
+                    <h3>Tips</h3>
+                    <p class="lead">Some criteria helping you perform better. </p>
+                </div><!-- /.col-lg-4 -->
+
+            </div><!-- /.row -->
+        </div>
+    </div>
+
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+        <span class="close">×</span>
+        <div id="con">
+        <img class="modal-content" id="modalImg">
+        </div>
+
+        <img id="rec" class="square" src="img/icon/square-black.png" onclick=startRec()>
+        <img id="line" class="line" src="img/icon/line-grey.png" onclick=startLine()>
+        <div id="rubber" class="rubber" onclick=clearLine()></div>
+
+        <div id="attributeArea"></div>
+        <div id="alternativeArea"></div>
+        <button id="submitTagButton" type="button" class="btn-save btn-icon">Finish & Save<i class="icon-save fa fa-check-square-o"></i></button>
+        <button id="submitTestButton" type="button" class="btn-save btn-icon" style="display: none">Confirm<i class="icon-save fa fa-check-square-o"></i></button>
+    </div>
+
+    <!-- Contact -->
+    <div id="contact" class="content-section-c ">
+
+        <div class="col-md-6 col-md-offset-3 text-center wrap_title white">
+            <h2>Any Suggestions?</h2>
+            <p class="lead" style="margin-top:0">We are looking forward to hearing from you</p>
+        </div>
+
+        <div class="mockup-content">
+            <div class="morph-button wow pulse morph-button-inflow morph-button-inflow-1">
+                <button type="button "><span>Contact us</span></button>
+                <!-- 变形按钮 -->
+                <div class="morph-content">
+                    <div class="content-style-form content-style-form-4 ">
+                        <h2 class="morph-clone">Contact us</h2>
+                        <form>
+                            <p><label>Email Content Here</label><textarea rows="5" cols="64"></textarea></p>
+                            <p><button>Send</button></p>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+    <!-- JavaScript -->
+    <!从魔方加载跳转主页-->
+    <script src="js/jquery-1.10.2.js"></script>
+    <script src="js/script.js"></script>
+
+    <!--arrow、导航、contact等动画-->
+    <script src="js/owl.carousel.js"></script>
+
+    <!-- StikyMenu -->
+    <script src="js/stickUp.min.js"></script>
+    <script type="text/javascript">
+    jQuery(function($) {
+        $(document).ready( function() {
+            $('.navbar-default').stickUp();	  
+            });
+        });
+
+    //刷新界面的时候等loading结束后下移1px，加载当前可见页面上的wow动画，防止start界面的wow动画不显示（即需要滚动一下才显示）
+    $(window).load(function() {
+        window.setTimeout(function(){window.scrollBy(0,1);},600);
+    });
+
+    <!-- 下载链接 -->
+    function informNotCompleted(){
+        alert("Coming soon！");
+    }
+
+    <!-- 导航选中高亮 -->
+    $(function(){
+	$('#nav li a').click(function(){	//只用nav li会和页内滚动的函数冲突
+            $('#nav li').removeClass("active");
+            $(this.parentNode).addClass("active");	//获取父节点
+	});
+    });
+
+    var username;
+    var position;
+    //判断登录情况，若有登录信息则直接跳转到对应职位的界面
+    window.onload=function(){
+
+        if(document.cookie.length!=0){  //存在cookie，直接登录
+            var arr=document.cookie.split('; '); //多个cookie值是以; 分隔的，用split把cookie分割开并赋值给数组
+            for(var i=0;i<arr.length;i++) { //历遍数组
+                var key = arr[i].split("=");
+                //找到名称为position和username的cookie，并返回它的值
+                if ("position" == key[0]) {
+                    position = key[1];
+                }
+                else if ("username" == key[0]) {
+                    username = key[1];
+                }
+            }
+            if (position == "boss") {     //打开网页验证成功后跳转到初始界面
+                //最好能返回登录前选择的界面
+                window.location.href = "boss.html";
+            }
+            else if(position=="administer"){
+                window.location.href = "administer.html";
+            }
+            else{   //worker,留在本页面
+                //变成logout
+                document.getElementById("loginItem").setAttribute("style", "display:none");
+                document.getElementById("logoutItem").setAttribute("style", "display:block");
+            }
+
+        }
+        else{
+            //自动跳转到登录界面
+            window.location.href = "login.html";
+        }
+    };
+
+
+
+    function logout(){
+        //alert(document.cookie);
+
+        //获取当前时间
+        var date=new Date();
+        //将date设置为过去的时间
+        date.setTime(date.getTime()-10000);
+        //删除cookie
+        document.cookie="username='' ; expires=" +date.toUTCString() + "; path=/";
+        document.cookie="position='' ; expires=" +date.toUTCString() + "; path=/";
+        //alert(document.cookie);
+
+        //自动跳转到登录界面
+        window.location.href = "login.html";
+    }
+
+    function toRegister(){
+        window.open("login.html?register=true","_self");    //在本窗口打开
+    }
+
+
+</script>
+
+    <!-- Tag界面切换 -->
+    <script src="js/shiftPage.js"></script>
+
+    <!--模态窗-->
+    <script src="js/jquery.Jcrop.js"></script>
+    <script src="js/modalForPicOnly.js"></script>
+
+    <!--翻页-->
+    <script src="js/paginationForPicOnly.js"></script>
+
+
+    <!主页标签浮现动画-->
+    <script src="js/wow.min.js"></script>
+
+    <!contact按钮动画-->
+    <script src="js/classie.js"></script>
+
+    <!磁力导航栏、contact按钮动画-->
+    <script src="js/uiMorphingButton_inflow.js"></script>
+
+    <!--arrow动画、磁力导航栏-->
+    <script src="js/jquery.magnific-popup.js"></script> 
+
+    <!--分页-->
+    <script src="js/pagination.js"></script>
+
+    <!--任务-->
+    <script src="js/taskForTagPhoto.js"></script>
+    <script src="js/paginationForMyTask.js"></script>
+    <script src="js/paginationForAllTask.js"></script>
+
+    <!--invitation-->
+    <script src="js/invitation.js"></script>
+</body>
+
+</html>

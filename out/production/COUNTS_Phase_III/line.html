@@ -1,0 +1,132 @@
+<html>
+<head>
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+</head>
+<body>
+<label>WebSocket连接状态:</label>
+<button type="button" onclick="myFunction()">连接</button>
+<script type="text/javascript">
+    myFunction = () => {
+        var list1 = [0.1, 0.2];
+        var list2 = [0.3, 0.4];
+        /*
+        $.ajax(
+            {
+                url: "http://localhost:8080/lalala",
+                data: {
+                    url: "../rear/src/main/java/hahaha/image/nature/lake.jpg",
+                    list1: list1,
+                    list2: list2,
+                    description: "hhh"
+                },
+                success: function (data) {
+                    alert("2");
+                    alert("Data: " + data);
+                },
+                error: function (xhr) {
+                    alert('动态页有问题噶！\n\n' + xhr.responseText);
+                },
+                traditional: true,
+            }
+        )
+*/
+        /*
+        $.ajax(
+            {
+                url: "http://localhost:8080/getNews",
+                data: {
+                    clue:"1158873864@qq.com",
+                },
+                async:false,
+                success: function (data) {
+                    alert("2");
+                    alert("Data: " + data);
+                },
+                error: function (xhr) {
+                    alert('动态页有问题噶！\n\n' + xhr.responseText);
+                },
+                traditional: true,
+            }
+        )*/
+        /*
+        $.ajax(
+            {
+                url: "http://localhost:8080/validate",
+                data: {
+                    mailAddress:"1158873864@qq.com",
+                    key:"80687",
+                },
+                async:false,
+                success: function (data) {
+                    alert("2");
+                    alert("Data: " + data);
+                },
+                error: function (xhr) {
+                    alert('动态页有问题噶！\n\n' + xhr.responseText);
+                },
+                traditional: true,
+            }
+        )*/
+        $.ajax(
+            {
+                url: "http://localhost:8080/validate",
+                data: {
+                    mailAddress:"1158873864@qq.com",
+                    key:"80687",
+                },
+                async:false,
+                success: function (data) {
+                    alert("2");
+                    alert("Data: " + data);
+                },
+                error: function (xhr) {
+                    alert('动态页有问题噶！\n\n' + xhr.responseText);
+                },
+                traditional: true,
+            }
+        )
+/*
+        $.ajax(
+            {
+                url: "http://localhost:8080/login",
+                data: {
+                    id:"1158873864@qq.com",
+                    password:"123456",
+                },
+                async: false,
+                success: function (data) {
+                    alert("1");
+                },
+                error: function (xhr) {
+                    alert('动态页有问题噶！\n\n' + xhr.responseText);
+                },
+                traditional: true,
+            }
+        )*/
+/*
+        var name;
+        var email=getUsername();
+        var phone;
+        $.ajax(
+            {
+                url: "http://localhost:8080/getNews",
+                data: {
+                    clue:email,
+                },
+                async:false,
+                success: function (data) {
+                    name=data[0];
+                    phone=data[2];
+                },
+                error: function (xhr) {
+                    alert('动态页有问题噶！\n\n' + xhr.responseText);
+                },
+                traditional: true,
+            }
+        )*///有用
+    }
+</script>
+<br/>
+<br/>
+</body>
+</html>
